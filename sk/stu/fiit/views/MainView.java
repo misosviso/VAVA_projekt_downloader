@@ -973,53 +973,70 @@ public class MainView extends javax.swing.JFrame{
         lblManageDownloads.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
     }//GEN-LAST:event_lblManageDownloadsMouseExited
 
+    private void lblMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainMouseClicked
+        switchPanel(lblMain, 0);
+    }//GEN-LAST:event_lblMainMouseClicked
+
     private void lblNewDownloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNewDownloadMouseClicked
         switchPanel(lblNewDownload, 1);
     }//GEN-LAST:event_lblNewDownloadMouseClicked
 
-    private void lblNewDownloadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNewDownloadMouseEntered
-        lblNewDownload.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 3));
-    }//GEN-LAST:event_lblNewDownloadMouseEntered
-
-    private void lblNewDownloadMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNewDownloadMouseExited
-         lblNewDownload.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
-    }//GEN-LAST:event_lblNewDownloadMouseExited
-
-    private void lblHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHistoryMouseClicked
-       switchPanel(lblHistory, 4);
-    }//GEN-LAST:event_lblHistoryMouseClicked
-
-    private void lblHistoryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHistoryMouseEntered
-        lblHistory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 3));
-    }//GEN-LAST:event_lblHistoryMouseEntered
-
-    private void lblHistoryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHistoryMouseExited
-        lblHistory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
-    }//GEN-LAST:event_lblHistoryMouseExited
+    private void lblManageDownloadsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManageDownloadsMouseClicked
+        switchPanel(lblManageDownloads, 2);
+    }//GEN-LAST:event_lblManageDownloadsMouseClicked
 
     private void lblUnzipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUnzipMouseClicked
         switchPanel(lblUnzip, 3);
     }//GEN-LAST:event_lblUnzipMouseClicked
 
+    private void lblHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHistoryMouseClicked
+        switchPanel(lblHistory, 4);
+    }//GEN-LAST:event_lblHistoryMouseClicked
+
+    private void lblMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainMouseEntered
+        lblMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 3));
+    }//GEN-LAST:event_lblMainMouseEntered
+
+    private void lblNewDownloadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNewDownloadMouseEntered
+        lblNewDownload.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 3));
+    }//GEN-LAST:event_lblNewDownloadMouseEntered
+
+    private void lblManageDownloadsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManageDownloadsMouseEntered
+        lblManageDownloads.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 3));
+    }//GEN-LAST:event_lblManageDownloadsMouseEntered
+
     private void lblUnzipMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUnzipMouseEntered
         lblUnzip.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 3));
     }//GEN-LAST:event_lblUnzipMouseEntered
 
+    private void lblHistoryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHistoryMouseEntered
+        lblHistory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 3));
+    }//GEN-LAST:event_lblHistoryMouseEntered
+
+    private void lblMainMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainMouseExited
+        if (lblMain.equals(lblActualPanel) == false)
+            lblMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
+    }//GEN-LAST:event_lblMainMouseExited
+
+    private void lblNewDownloadMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNewDownloadMouseExited
+        if (lblNewDownload.equals(lblActualPanel) == false)
+            lblNewDownload.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
+    }//GEN-LAST:event_lblNewDownloadMouseExited
+
+    private void lblManageDownloadsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManageDownloadsMouseExited
+        if (lblManageDownloads.equals(lblActualPanel) == false)
+            lblManageDownloads.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
+    }//GEN-LAST:event_lblManageDownloadsMouseExited
+
     private void lblUnzipMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUnzipMouseExited
-        lblUnzip.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
+        if (lblUnzip.equals(lblActualPanel) == false)
+            lblUnzip.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
     }//GEN-LAST:event_lblUnzipMouseExited
 
-    private void lblMainPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainPageMouseClicked
-        switchPanel(lblMainPage, 0);
-    }//GEN-LAST:event_lblMainPageMouseClicked
-
-    private void lblMainPageMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainPageMouseEntered
-        lblMainPage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 3));
-    }//GEN-LAST:event_lblMainPageMouseEntered
-
-    private void lblMainPageMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainPageMouseExited
-        lblMainPage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
-    }//GEN-LAST:event_lblMainPageMouseExited
+    private void lblHistoryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHistoryMouseExited
+        if (lblHistory.equals(lblActualPanel) == false)
+            lblHistory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
+    }//GEN-LAST:event_lblHistoryMouseExited
 
     private void fldSourceP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldSourceP3ActionPerformed
         // TODO add your handling code here:
