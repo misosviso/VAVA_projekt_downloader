@@ -32,7 +32,7 @@ public class MainView extends javax.swing.JFrame{
      */
     public MainView() {
         initComponents();     
-        this.lblActualPanel = lblMainPage;
+        this.lblActualPanel = lblMain;
         this.downloadController = new DownloadController(this);
         this.recordController = new RecordController();
         initTables();
@@ -48,7 +48,7 @@ public class MainView extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblMainPage = new javax.swing.JLabel();
+        lblMain = new javax.swing.JLabel();
         lblNewDownload = new javax.swing.JLabel();
         lblManageDownloads = new javax.swing.JLabel();
         lblUnzip = new javax.swing.JLabel();
@@ -155,27 +155,27 @@ public class MainView extends javax.swing.JFrame{
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblMainPage.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblMainPage.setForeground(new java.awt.Color(3, 1, 54));
-        lblMainPage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMainPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/polygonsBackground.jpg"))); // NOI18N
+        lblMain.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblMain.setForeground(new java.awt.Color(3, 1, 54));
+        lblMain.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/polygonsBackground.jpg"))); // NOI18N
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Bundle"); // NOI18N
-        lblMainPage.setText(bundle.getString("MainMenuView.lblAccommodation.text")); // NOI18N
-        lblMainPage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 245, 255), 3));
-        lblMainPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblMainPage.setIconTextGap(0);
-        lblMainPage.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblMain.setText(bundle.getString("MainMenuView.lblAccommodation.text")); // NOI18N
+        lblMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 245, 255), 3));
+        lblMain.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblMain.setIconTextGap(0);
+        lblMain.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMainPageMouseClicked(evt);
+                lblMainMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblMainPageMouseEntered(evt);
+                lblMainMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblMainPageMouseExited(evt);
+                lblMainMouseExited(evt);
             }
         });
-        getContentPane().add(lblMainPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 40));
+        getContentPane().add(lblMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 40));
 
         lblNewDownload.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblNewDownload.setForeground(new java.awt.Color(3, 1, 54));
@@ -961,17 +961,17 @@ public class MainView extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_startDownloadingBtnMouseReleased
 
-    private void lblManageDownloadsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManageDownloadsMouseClicked
+    private void lblManageDownloadsMouseClicked(java.awt.event.MouseEvent evt) {                                                
         switchPanel(lblManageDownloads, 2);
-    }//GEN-LAST:event_lblManageDownloadsMouseClicked
+    }                                               
 
-    private void lblManageDownloadsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManageDownloadsMouseEntered
+    private void lblManageDownloadsMouseEntered(java.awt.event.MouseEvent evt) {                                                
         lblManageDownloads.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 3));
-    }//GEN-LAST:event_lblManageDownloadsMouseEntered
+    }                                               
 
-    private void lblManageDownloadsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManageDownloadsMouseExited
+    private void lblManageDownloadsMouseExited(java.awt.event.MouseEvent evt) {                                               
         lblManageDownloads.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
-    }//GEN-LAST:event_lblManageDownloadsMouseExited
+    }                                              
 
     private void lblMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainMouseClicked
         switchPanel(lblMain, 0);
@@ -1209,7 +1209,7 @@ public class MainView extends javax.swing.JFrame{
     private javax.swing.JButton lblEnglishP1;
     private javax.swing.JLabel lblHistory;
     private javax.swing.JLabel lblLanguageP1;
-    private javax.swing.JLabel lblMainPage;
+    private javax.swing.JLabel lblMain;
     private javax.swing.JLabel lblMainTitleP1;
     private javax.swing.JLabel lblMainTitleP2;
     private javax.swing.JLabel lblMainTitleP3;
