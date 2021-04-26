@@ -16,17 +16,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class DownloadRecord implements TableModelItem, Serializable{
     
-    private final int ID;
-    private final Date startingDate;
-    private final String url;
-    private final String filePath;
-    private final boolean interrupted;
-    private final int size;
-
-    public String getFilePath() {
-        return filePath;
-    }
-    private final long timeElapsed;
+    private int ID;
+    private Date startingDate;
+    private String url;
+    private String filePath;
+    private boolean interrupted;
+    private int size;
+    private long timeElapsed;
 
     public DownloadRecord(Downloader downloader) {
         this.ID = downloader.getDownloaderId();
@@ -36,6 +32,9 @@ public class DownloadRecord implements TableModelItem, Serializable{
         this.interrupted = downloader.isInterrupted();
         this.size = downloader.getTotalSize();
         this.timeElapsed = new Date().getTime() - downloader.getDate().getTime();
+    }
+
+    public DownloadRecord() {
     }
     
     private String getStringStatus(){
@@ -66,8 +65,60 @@ public class DownloadRecord implements TableModelItem, Serializable{
         return row;
     }
     
-    
-    
-    
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public Date getStartingDate() {
+        return startingDate;
+    }
+
+    public void setStartingDate(Date startingDate) {
+        this.startingDate = startingDate;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public boolean isInterrupted() {
+        return interrupted;
+    }
+
+    public void setInterrupted(boolean interrupted) {
+        this.interrupted = interrupted;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public long getTimeElapsed() {
+        return timeElapsed;
+    }
+
+    public void setTimeElapsed(long timeElapsed) {
+        this.timeElapsed = timeElapsed;
+    }
     
 }

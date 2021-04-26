@@ -5,6 +5,9 @@
  */
 package sk.stu.fiit.IO;
 
+import java.beans.ExceptionListener;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,7 +17,7 @@ import java.io.ObjectOutputStream;
 import sk.stu.fiit.models.RecordManager;
 
 /**
- *
+ * Class for serializing and deserializing information about completed downloads
  * @author Admin
  */
 public class Serializer {
@@ -41,7 +44,27 @@ public class Serializer {
         }
     }
     
+    public static void XMLserialize(RecordManager objRM) throws IOException{
+        try (FileOutputStream fos = new FileOutputStream("downloadedFiles.xml"); 
+        XMLEncoder objEncoder = new XMLEncoder(fos)) {
+            objEncoder.setExceptionListener(new ExceptionListener() {
+                @Override
+                public void exceptionThrown(Exception e) {
+                    System.out.println("Exception! :"+e.toString());
+                }
+            });
+            objEncoder.writeObject(objRM);
+        }
+    }
     
+    public static RecordManager XMLload() throws IOException{
+        RecordManager objManager;
+        try (FileInputStream fis = new FileInputStream("downloadedFiles.xml"); 
+        XMLDecoder objDecoder = new XMLDecoder(fis)) {
+            objManager = (RecordManager) objDecoder.readObject();
+        }
+        return objManager; 
+    }
  
     
 }

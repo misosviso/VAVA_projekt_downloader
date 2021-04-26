@@ -25,7 +25,7 @@ public class RecordManager implements Serializable{
     public static RecordManager getDownloadedManager() {
         if(instanceOfSelf == null){
             try {
-                instanceOfSelf = Serializer.load();
+                instanceOfSelf = Serializer.XMLload();
             } catch (IOException ex) {
                 instanceOfSelf = new RecordManager();
             }
@@ -33,10 +33,10 @@ public class RecordManager implements Serializable{
         return instanceOfSelf;
     }
     
-    private final List<DownloadRecord> records = new LinkedList<>();
+    private List<DownloadRecord> records = new LinkedList<>();
     private static RecordManager instanceOfSelf;
 
-    private RecordManager() {
+    public RecordManager() {
     }
 
     public List<TableModelItem> getDownloadedModel() {
@@ -77,9 +77,23 @@ public class RecordManager implements Serializable{
     }
     
     private void save() throws IOException{
-        Serializer.serialize(this);
+        Serializer.XMLserialize(this);
     }
     
-    
+    public List<DownloadRecord> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<DownloadRecord> records) {
+        this.records = records;
+    }
+
+    public static RecordManager getInstanceOfSelf() {
+        return instanceOfSelf;
+    }
+
+    public static void setInstanceOfSelf(RecordManager instanceOfSelf) {
+        RecordManager.instanceOfSelf = instanceOfSelf;
+    }
     
 }

@@ -961,18 +961,6 @@ public class MainView extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_startDownloadingBtnMouseReleased
 
-    private void lblManageDownloadsMouseClicked(java.awt.event.MouseEvent evt) {                                                
-        switchPanel(lblManageDownloads, 2);
-    }                                               
-
-    private void lblManageDownloadsMouseEntered(java.awt.event.MouseEvent evt) {                                                
-        lblManageDownloads.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 3));
-    }                                               
-
-    private void lblManageDownloadsMouseExited(java.awt.event.MouseEvent evt) {                                               
-        lblManageDownloads.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
-    }                                              
-
     private void lblMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainMouseClicked
         switchPanel(lblMain, 0);
     }//GEN-LAST:event_lblMainMouseClicked
