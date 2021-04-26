@@ -9,12 +9,12 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * Class which is responsible for downloading file from URL address
  * @author Admin
  */
-public class Downloader extends Thread implements TableModelItem{
+public class Downloader extends Thread implements TableModelItem, Logging{
 
     private final int downloaderID;
     private final String source;
@@ -31,6 +31,8 @@ public class Downloader extends Thread implements TableModelItem{
     private int totalSize = 0;
     private int downloaded = 0;
     private final Date startDate;
+    private static final Handler fileHandler = null;
+    private static final Logger LOGGER = Logger.getLogger(DownloadManager.class.getClass().getName());
     
     /**
      * Constructor
@@ -46,6 +48,7 @@ public class Downloader extends Thread implements TableModelItem{
         this.destination = destination;
         this.totalSize = new URL(source).openConnection().getContentLength();
         this.startDate = new Date();
+        Logging.setupHandler(fileHandler, LOGGER);
     }
     
     public int getDownloaderId() {
@@ -54,11 +57,9 @@ public class Downloader extends Thread implements TableModelItem{
    
     @Override
     public void run() {
-        System.out.println("this.source = " + this.source);
-        System.out.println("this.destination = " + this.destination);
+        LOGGER.log(Level.INFO, "Zacatie stahovania ID: " + downloaderID + ", url: " + source + " destinacia: " + destination);
         try (BufferedInputStream inputStream = new BufferedInputStream(new URL(source).openStream());
         FileOutputStream fileOS = new FileOutputStream(destination);) {
-            System.out.println("sem sa dostanem");
             byte data[] = new byte[1024];
             int byteContent;
             
@@ -72,10 +73,9 @@ public class Downloader extends Thread implements TableModelItem{
             }
             
         } catch (IOException ex) {
-            Logger.getLogger(Downloader.class.getName()).log(Level.SEVERE, "Nepodarilo sa zapisovat do suporu", ex);
+            LOGGER.log(Level.SEVERE, "IO chyba pri stahovani", ex);
         } catch (InterruptedException ex) {
-            System.out.println("Stahovanie bolo interruptnute");
-            Logger.getLogger(Downloader.class.getName()).log(Level.SEVERE, "Thread downloadera bol preruseny", ex);
+            LOGGER.log(Level.SEVERE, "ID: " + downloaderID + " - Stahovanie bolo prerusene", ex);
         }
         
         if(isInterrupted()){
@@ -94,16 +94,16 @@ public class Downloader extends Thread implements TableModelItem{
     }
     
     public void pauseDownloading() throws InterruptedException{
+        LOGGER.log(Level.INFO, "ID: " + downloaderID + " - Stahovanie bolo pozastavene pouzivatelom");
         running = false;
     }
 
     public void resumeDownloading() {
+        LOGGER.log(Level.INFO, "ID: " + downloaderID + " - Stahovanie bolo obnovene pouzivatelom");
         running = true;
     }
     
-    public void cancelDownloading() throws InterruptedException{
-        System.out.println("pospim 5 sekund a interruptnem");
-        sleep(5000);
+    public void cancelDownloading(){
         interrupt();
     }
 

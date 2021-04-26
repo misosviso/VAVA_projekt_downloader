@@ -35,6 +35,7 @@ public class RecordManager implements Serializable{
     
     private List<DownloadRecord> records = new LinkedList<>();
     private static RecordManager instanceOfSelf;
+    private static final Logger objLogger = Logger.getLogger(RecordManager.class.getName());
 
     public RecordManager() {
     }
