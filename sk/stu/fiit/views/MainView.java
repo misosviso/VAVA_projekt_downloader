@@ -1264,7 +1264,7 @@ public class MainView extends javax.swing.JFrame{
     }
     
     private void initTables(){
-        tblDownloadsP1.setModel(recordController.getDownload());
+        tblDownloadsP1.setModel(recordController.getDownloaded());
     }
     
 }

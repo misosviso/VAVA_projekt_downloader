@@ -9,6 +9,8 @@ package sk.stu.fiit.controllers;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
@@ -37,6 +39,13 @@ public class DateTimeController {
                     String min = String.format("%02d", rawMin);
                     String hour = String.format("%02d", rawHour);
                     timeLbl.setText(hour + ":" + min + ":" + sec);
+                    
+                    
+                    try {
+                        sleep(1000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(DateTimeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         }.start();

@@ -75,4 +75,12 @@ public class DownloadManager extends Thread{
         return (List<TableModelItem>) (Object) downloads;
     }
 
+    public void remove(Downloader objDownloader) {
+        this.downloads.remove(objDownloader);
+    }
+
+    public void cancelDownloading(int ID) {
+        getSpecificDownloader(ID).interrupt();
+    }
+
 }

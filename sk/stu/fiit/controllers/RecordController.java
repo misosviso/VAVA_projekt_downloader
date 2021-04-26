@@ -17,13 +17,18 @@ import sk.stu.fiit.models.RecordManager;
  */
 public class RecordController implements CustomTableModel, Serializable{
     
-    private final RecordManager manager = RecordManager.getDownloadedManager();
+    private final RecordManager manager = RecordManager.getRecordManager();
     
-    public DefaultTableModel getDownload(){
+    public DefaultTableModel getDownloaded(){
         return new DefaultTableModel(getTableData(this.manager.getDownloadedModel()), 
                 new Object[]{"ID", "Dátum", "URL adresa", "Destinácia", "Status", "Veľkosť", "Trvanie"});
     }
     
+    public DefaultTableModel getRecent(){
+        return new DefaultTableModel(getTableData(this.manager.getDownloadedModel().subList(0, 4)), 
+                new Object[]{"ID", "Dátum", "URL adresa", "Destinácia", "Status", "Veľkosť", "Trvanie"});
+    }
+        
     public DefaultTableModel getDownloadedZips() throws IOException{
         return new DefaultTableModel(getTableData(this.manager.getZipsModel()), 
                 new Object[]{"ID", "Dátum", "URL adresa", "Destinácia", "Status", "Veľkosť", "Trvanie"});

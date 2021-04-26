@@ -22,7 +22,7 @@ import sk.stu.fiit.models.unzipping.Unzipper;
  */
 public class RecordManager implements Serializable{
 
-    public static RecordManager getDownloadedManager() {
+    public static RecordManager getRecordManager() {
         if(instanceOfSelf == null){
             try {
                 instanceOfSelf = Serializer.XMLload();
@@ -35,7 +35,6 @@ public class RecordManager implements Serializable{
     
     private List<DownloadRecord> records = new LinkedList<>();
     private static RecordManager instanceOfSelf;
-    private static final Logger objLogger = Logger.getLogger(RecordManager.class.getName());
 
     public RecordManager() {
     }
@@ -47,7 +46,7 @@ public class RecordManager implements Serializable{
     private List<DownloadRecord> getZips() throws IOException{
        List<DownloadRecord> zipDownloads = new LinkedList<>();
         for (DownloadRecord record : records) {
-            if(Unzipper.isZip(record.getFilePath())){
+            if(Unzipper.isZip(record.getFilePath()) && !record.isInterrupted()){
                 zipDownloads.add(record);
             }
         } 

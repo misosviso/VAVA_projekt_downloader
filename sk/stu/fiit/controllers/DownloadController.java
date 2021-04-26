@@ -7,11 +7,8 @@ package sk.stu.fiit.controllers;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import javax.swing.JLabel;
-import javax.swing.JProgressBar;
 import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.models.DownloadManager;
-import sk.stu.fiit.models.DownloadProgressChecker;
 import sk.stu.fiit.models.Downloader;
 import sk.stu.fiit.views.MainView;
 
@@ -30,8 +27,7 @@ public class DownloadController implements CustomTableModel{
     
     public void download(String urlString, String pathString) throws MalformedURLException, IOException {
         Downloader objDownloader = manager.download(urlString, pathString);
-//        DownloadProgressChecker downloadProgressChecker = new DownloadProgressChecker(objDownloader, this.view);
-//        downloadProgressChecker.start();
+
     }
     
     public void pauseDownloading(int ID) throws InterruptedException, IOException {
@@ -40,6 +36,10 @@ public class DownloadController implements CustomTableModel{
 
     public void resumeDownloading(int ID) throws InterruptedException, IOException {
         manager.resumeDownloading(ID);
+    }
+    
+    public void cancelDownloading(int ID){
+        manager.cancelDownloading(ID);
     }
     
     public DefaultTableModel getDownloading(){

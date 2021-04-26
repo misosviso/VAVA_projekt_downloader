@@ -82,7 +82,8 @@ public class Downloader extends Thread implements TableModelItem, Logging{
             new File(destination).delete();
         }
         
-        RecordManager.getDownloadedManager().addRecord(this);
+        DownloadManager.getDownloadManager().remove(this);
+        RecordManager.getRecordManager().addRecord(this);
     }
 
     public int getDownloaded() {
