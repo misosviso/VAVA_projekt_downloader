@@ -15,7 +15,7 @@ import sk.stu.fiit.models.TableModelItem;
 public interface CustomTableModel {
     
     default Object[][] getTableData(List<TableModelItem> list){
-        Object[][] data = new Object[list.size()][4]; // tatoka 4ka
+        Object[][] data = new Object[list.size()][]; // tatoka 4ka
         int index = 0;
         for(TableModelItem item : list){
             data[index++] = item.getDataRow();

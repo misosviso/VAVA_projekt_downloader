@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import sk.stu.fiit.IO.Serializer;
 import sk.stu.fiit.exceptions.NotZipException;
 import sk.stu.fiit.models.unzipping.Unzipper;
+import sk.stu.fiit.views.MainView;
 
 /**
  *
@@ -36,8 +37,13 @@ public class RecordManager implements Serializable{
     private List<DownloadRecord> records = new LinkedList<>();
     private static RecordManager instanceOfSelf;
     private int lastID;
+    private MainView view;
 
     public RecordManager() {
+    }
+    
+    public void setUpView(MainView view){
+        this.view = view;
     }
 
     public int getLastID() {
@@ -113,6 +119,11 @@ public class RecordManager implements Serializable{
         lastID++;
         System.out.println("lastID = " + lastID);
         return lastID;
+    }
+
+    public void updateTables() {
+        System.out.println("view = " + view);
+        view.updateTables();
     }
     
 }

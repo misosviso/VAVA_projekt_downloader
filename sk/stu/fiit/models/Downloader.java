@@ -27,8 +27,8 @@ public class Downloader extends Thread implements TableModelItem, Logging{
     private final String source;
     private final String destination;
     private volatile boolean running = true;
-    private int totalSize = 0;
-    private int downloaded = 0;
+    private long totalSize = 0;
+    private long downloaded = 0;
     private final Date startDate;
     private final Logger LOGGER;
     
@@ -56,6 +56,7 @@ public class Downloader extends Thread implements TableModelItem, Logging{
    
     @Override
     public void run() {
+        System.out.println("totalSize = " + totalSize);
         LOGGER.log(Level.INFO, "Zacatie stahovania ID: " + downloaderID + ", url: " + source + " destinacia: " + destination);
         try (BufferedInputStream inputStream = new BufferedInputStream(new URL(source).openStream());
         FileOutputStream fileOS = new FileOutputStream(destination);) {
@@ -65,6 +66,7 @@ public class Downloader extends Thread implements TableModelItem, Logging{
             while ((byteContent = inputStream.read(data, 0, 1024)) != -1 && !isInterrupted()) {
                 downloaded += byteContent;
                 fileOS.write(data, 0, byteContent);
+                sleep(5000);
                 while(!running){
                     Downloader.yield();
                     sleep(5000);
@@ -76,21 +78,22 @@ public class Downloader extends Thread implements TableModelItem, Logging{
             interrupt();
         } catch (InterruptedException ex) {
             LOGGER.log(Level.SEVERE, "ID: " + downloaderID + " - Stahovanie bolo prerusene", ex);
+            interrupt();
         }
         
         if(isInterrupted()){
             new File(destination).delete();
         }
-        
-        DownloadManager.getDownloadManager().remove(this);
+        System.out.println("isInterrupted = " + isInterrupted());
         RecordManager.getRecordManager().addRecord(this);
+        DownloadManager.getDownloadManager().remove(this);
     }
 
-    public int getDownloaded() {
+    public long getDownloaded() {
         return downloaded;
     }
     
-    public int getTotalSize() {
+    public long getTotalSize() {
         return totalSize;
     }
     

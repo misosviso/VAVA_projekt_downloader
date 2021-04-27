@@ -7,11 +7,10 @@ package sk.stu.fiit.controllers;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.exceptions.NotZipException;
 import sk.stu.fiit.models.RecordManager;
+import sk.stu.fiit.views.MainView;
 
 /**
  *
@@ -27,8 +26,13 @@ public class RecordController implements CustomTableModel, Serializable{
     }
     
     public DefaultTableModel getRecent(){
-        return new DefaultTableModel(getTableData(this.manager.getDownloadedModel().subList(0, 4)), 
+        try {
+            return new DefaultTableModel(getTableData(this.manager.getDownloadedModel().subList(0, 4)), 
                 new Object[]{"ID", "Dátum", "URL adresa", "Destinácia", "Status", "Veľkosť", "Trvanie"});
+        } catch (Exception e) {
+            return new DefaultTableModel(getTableData(this.manager.getDownloadedModel()), 
+                new Object[]{"ID", "Dátum", "URL adresa", "Destinácia", "Status", "Veľkosť", "Trvanie"});
+        }
     }
         
     public DefaultTableModel getDownloadedZips() throws IOException{
@@ -64,8 +68,11 @@ public class RecordController implements CustomTableModel, Serializable{
         return this.manager.getSpecific(selectedRowIndex).getStringTimeElapsed();
     }
     
-    public void openFileLoacation(int selectedRecordIndex) throws IOException{
-        String path = getSpecificDestination(selectedRecordIndex);
+    public void openFileLoacation(String path) throws IOException{
         Runtime.getRuntime().exec("explorer.exe /select," + path);
+    }
+    
+    public void setUpView(MainView view){
+        this.manager.setUpView(view);
     }
 }

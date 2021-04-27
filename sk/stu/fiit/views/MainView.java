@@ -22,7 +22,7 @@ import sk.stu.fiit.models.DestinationResolver;
  *
  * @author Admin
  */
-public class MainView extends javax.swing.JFrame{
+public final class MainView extends javax.swing.JFrame{
 
     private JLabel lblActualPanel;
     private final RecordController recordController;
@@ -36,11 +36,13 @@ public class MainView extends javax.swing.JFrame{
         this.lblActualPanel = lblMain;
         this.downloadController = new DownloadController(this);
         this.recordController = new RecordController();
-        initTables();
-        DateTimeController.countDateAndTime(lblDate, lblTime);
+        recordController.setUpView(this);
+        startInitingTables();
     }
     
-
+    public void startInitingTables(){
+        DateTimeController.countDateAndTime(lblDate, lblTime, this);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -573,6 +575,11 @@ public class MainView extends javax.swing.JFrame{
                 return canEdit [columnIndex];
             }
         });
+        tblDownloadsP3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDownloadsP3MouseClicked(evt);
+            }
+        });
         scrollP3.setViewportView(tblDownloadsP3);
 
         pnlManageDownloadsP3.add(scrollP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 800, 120));
@@ -580,16 +587,31 @@ public class MainView extends javax.swing.JFrame{
         btnPauseP3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnPauseP3.setText(bundle.getString("MainView.btnPauseP3.text")); // NOI18N
         btnPauseP3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(20, 3, 252), 2));
+        btnPauseP3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPauseP3MouseClicked(evt);
+            }
+        });
         pnlManageDownloadsP3.add(btnPauseP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 420, 110, 30));
 
         btnResumeP3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnResumeP3.setText(bundle.getString("MainView.btnResumeP3.text")); // NOI18N
         btnResumeP3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 184, 9), 2));
+        btnResumeP3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnResumeP3MouseClicked(evt);
+            }
+        });
         pnlManageDownloadsP3.add(btnResumeP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, 110, 30));
 
         btnAbortP3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnAbortP3.setText(bundle.getString("MainView.btnAbortP3.text")); // NOI18N
         btnAbortP3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(252, 3, 3), 2));
+        btnAbortP3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAbortP3MouseClicked(evt);
+            }
+        });
         pnlManageDownloadsP3.add(btnAbortP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 420, 110, 30));
 
         btnShowDetailP3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
@@ -792,6 +814,11 @@ public class MainView extends javax.swing.JFrame{
         btnDetailP5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnDetailP5.setText(bundle.getString("MainView.btnDetailP5.text")); // NOI18N
         btnDetailP5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(232, 32, 36), 2));
+        btnDetailP5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDetailP5MouseClicked(evt);
+            }
+        });
         pnlHistoryP5.add(btnDetailP5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, 240, 30));
 
         lblBackgroundP5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/background.jpg"))); // NOI18N
@@ -912,6 +939,11 @@ public class MainView extends javax.swing.JFrame{
         btnOpenP6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnOpenP6.setText(bundle.getString("MainView.btnOpenP6.text")); // NOI18N
         btnOpenP6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240), 2));
+        btnOpenP6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOpenP6MouseClicked(evt);
+            }
+        });
         pnlDetailP6.add(btnOpenP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 270, 30));
 
         lblBackgroundP6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/background.jpg"))); // NOI18N
@@ -1086,6 +1118,63 @@ public class MainView extends javax.swing.JFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSlovakP1ActionPerformed
 
+    private void btnDetailP5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetailP5MouseClicked
+        // TODO add your handling code here:
+        int selectedTableIndex = tblDownloadsP5.getSelectedRow();
+        this.fldNameP6.setText(this.recordController.getSpecificDestination(selectedTableIndex));
+        this.fldSourceP6.setText(this.recordController.getSpecificSource(selectedTableIndex));
+        this.fldSizeP6.setText(this.recordController.getSpecificSize(selectedTableIndex));
+        this.fldDateP6.setText(this.recordController.getSpecificDate(selectedTableIndex));
+        this.fldStatusP6.setText(this.recordController.getSpecificStatus(selectedTableIndex));
+        this.fldDurationP6.setText(this.recordController.getSpecificTime(selectedTableIndex));
+        switchPanel(lblActualPanel, 5);
+    }//GEN-LAST:event_btnDetailP5MouseClicked
+
+    private void btnOpenP6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOpenP6MouseClicked
+        try {
+            // TODO add your handling code here:
+            this.recordController.openFileLoacation(fldNameP6.getText());
+        } catch (IOException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnOpenP6MouseClicked
+
+    private void btnPauseP3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPauseP3MouseClicked
+        try {
+            // TODO add your handling code here:
+            this.downloadController.pauseDownloading();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnPauseP3MouseClicked
+
+    private void tblDownloadsP3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDownloadsP3MouseClicked
+        // TODO add your handling code here:
+        int selectedIndex = tblDownloadsP3.getSelectedRow();
+        if(selectedIndex < 0){
+            return;
+        }
+        showDownloadDetail(selectedIndex);
+    }//GEN-LAST:event_tblDownloadsP3MouseClicked
+
+    private void btnResumeP3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResumeP3MouseClicked
+        try {
+            // TODO add your handling code here:
+            this.downloadController.resumeDownloading();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnResumeP3MouseClicked
+
+    private void btnAbortP3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbortP3MouseClicked
+        // TODO add your handling code here:
+        this.downloadController.cancelDownloading();
+    }//GEN-LAST:event_btnAbortP3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1226,11 +1315,11 @@ public class MainView extends javax.swing.JFrame{
     private javax.swing.JTextField vldLocationP2;
     // End of variables declaration//GEN-END:variables
 
-    public void updateProgress(int[] downloadState){
+    public void updateProgress(long[] downloadState){
         float percentage = (float)downloadState[0] / (float)downloadState[1] * 100;
         System.out.println("percentage = " + percentage);
-        this.progressBarP3.setMaximum(downloadState[1]);
-        this.progressBarP3.setValue(downloadState[0]);
+//        this.progressBarP3.setMaximum(downloadState[1]);
+//        this.progressBarP3.setValue(downloadState[0]);
         this.lblPercentageP3.setText(percentage + "%");
     }
     
@@ -1241,8 +1330,26 @@ public class MainView extends javax.swing.JFrame{
         tabbs.setSelectedIndex(switchTo);
     }
     
-    private void initTables(){
-        tblDownloadsP1.setModel(recordController.getDownloaded());
+    public void updateTables(){
+        tblDownloadsP1.setModel(recordController.getRecent());
+        //        try {
+//            tblDownloadsP4.setModel(recordController.getDownloadedZips());
+//        } catch (IOException ex) {
+//            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        tblDownloadsP5.setModel(recordController.getDownloaded());
+    }
+    
+    public void displayDownloadTable(){
+        tblDownloadsP3.setModel(downloadController.getDownloading());
+    }
+
+    public void displayState() {
+        this.fldStatus.setText(this.downloadController.getProgramStatus());
+    }
+    
+    public void showDownloadDetail(int selectedIndex){
+        this.downloadController.setUpIndex(selectedIndex);
     }
     
 }

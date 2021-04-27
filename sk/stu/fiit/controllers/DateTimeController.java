@@ -12,6 +12,7 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import sk.stu.fiit.views.MainView;
 
 /**
  *
@@ -19,7 +20,7 @@ import javax.swing.JLabel;
  */
 public class DateTimeController {
     
-    public static void countDateAndTime(JLabel dateLbl, JLabel timeLbl){
+    public static void countDateAndTime(JLabel dateLbl, JLabel timeLbl, MainView view){
         new Thread(){
             @Override
             public void run() {
@@ -39,7 +40,8 @@ public class DateTimeController {
                     String min = String.format("%02d", rawMin);
                     String hour = String.format("%02d", rawHour);
                     timeLbl.setText(hour + ":" + min + ":" + sec);
-                    
+                    view.displayDownloadTable();
+                    view.displayState();
                     
                     try {
                         sleep(1000);

@@ -22,7 +22,7 @@ public class DownloadRecord implements TableModelItem, Serializable{
     private String url;
     private String filePath;
     private boolean interrupted;
-    private int size;
+    private long size;
     private long timeElapsed;
 
     public DownloadRecord(Downloader downloader) {
@@ -33,6 +33,7 @@ public class DownloadRecord implements TableModelItem, Serializable{
         this.interrupted = downloader.isInterrupted();
         this.size = downloader.getTotalSize();
         this.timeElapsed = new Date().getTime() - downloader.getDate().getTime();
+        RecordManager.getInstanceOfSelf().updateTables();
     }
 
     public DownloadRecord() {
@@ -52,7 +53,7 @@ public class DownloadRecord implements TableModelItem, Serializable{
         String sec = String.format("%02d", rawSec);
         String min = String.format("%02d", rawMin);
         String hour = String.format("%02d", rawHour);
-        return sec + ":" + min + ":" + hour;
+        return hour + ":" + min + ":" + sec;
     }
     
     public String getStringDate(){
@@ -62,6 +63,7 @@ public class DownloadRecord implements TableModelItem, Serializable{
     
     public String getStringSize(){
         DecimalFormat df = new DecimalFormat("0.00");
+        System.out.println("size = " + size);
         float kBsize = (float)size / (float)1024;
         float MBsize = (float)kBsize / (float)1024;
         float GBsize = (float)MBsize / (float)1024;
@@ -121,11 +123,11 @@ public class DownloadRecord implements TableModelItem, Serializable{
         this.interrupted = interrupted;
     }
 
-    public int getSize() {
+    public long getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(long size) {
         this.size = size;
     }
 

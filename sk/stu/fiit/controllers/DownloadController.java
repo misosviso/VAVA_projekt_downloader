@@ -9,8 +9,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.models.DownloadManager;
+import sk.stu.fiit.models.Downloader;
 import sk.stu.fiit.views.MainView;
 
 /**
@@ -20,6 +22,7 @@ import sk.stu.fiit.views.MainView;
 public class DownloadController implements CustomTableModel{
     
     private final DownloadManager manager = DownloadManager.getDownloadManager();
+    private int selectedDownload;
     private final MainView view;
 
     public DownloadController(MainView view) {
@@ -30,19 +33,7 @@ public class DownloadController implements CustomTableModel{
         manager.download(urlString, pathString);
 
     }
-    
-    public void pauseDownloading(int selectedTableIndex) throws InterruptedException, IOException {
-        manager.pauseDownloading(selectedTableIndex);
-    }
-
-    public void resumeDownloading(int selectedDownloaderIndex) throws InterruptedException, IOException {
-        manager.resumeDownloading(selectedDownloaderIndex);
-    }
-    
-    public void cancelDownloading(int selectedDownloaderIndex){
-        manager.cancelDownloading(selectedDownloaderIndex);
-    }
-    
+        
     public DefaultTableModel getDownloading(){
         return new DefaultTableModel(getTableData(this.manager.getDownloading()), 
                 new Object[]{"ID", "Dátum", "URL adresa", "Destinácia", "Status", "Veľkosť", "Trvanie"});
@@ -79,5 +70,21 @@ public class DownloadController implements CustomTableModel{
     
     public void startProgressChecker(int selectedDownloaderIndex) throws IOException{
         this.manager.startProgressChecker(selectedDownloaderIndex, this.view);
+    }
+    
+    public void setUpIndex(int index){
+        this.selectedDownload = index;
+    }
+
+    public void pauseDownloading() throws InterruptedException, IOException {
+        this.manager.pauseDownloading(selectedDownload);
+    }
+
+    public void resumeDownloading() throws InterruptedException, IOException {
+        this.manager.resumeDownloading(selectedDownload);
+    }
+
+    public void cancelDownloading() {
+        this.manager.cancelDownloading(selectedDownload);
     }
 }

@@ -17,12 +17,12 @@ import sk.stu.fiit.views.MainView;
 public class DownloadProgressChecker extends Thread{
     
     private Downloader objDownloader;
-    private final int[] downloadState;
+    private final long[] downloadState;
     private final MainView view;
 
     public DownloadProgressChecker(Downloader objDownloader, MainView view) {
         this.objDownloader = objDownloader;
-        this.downloadState = new int[]{0, objDownloader.getTotalSize()};
+        this.downloadState = new long[]{0, objDownloader.getTotalSize()};
         this.view = view;
     }
 

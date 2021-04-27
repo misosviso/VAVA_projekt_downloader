@@ -80,7 +80,6 @@ public class Unzipper {
     
     public static boolean isZip(String zipFile) throws IOException{
         String contentType = Files.probeContentType(Paths.get(zipFile));
-        System.out.println("contentType = " + contentType);
         return (contentType.equals("application/x-zip-compressed"));
     }
     
