@@ -22,7 +22,6 @@ public interface Logging {
             fileHandler = new FileHandler("./logfile.log");
             SimpleFormatter simple = new SimpleFormatter();
             fileHandler.setFormatter(simple);
-
             LOGGER.addHandler(fileHandler);
 
         } catch (IOException e) {

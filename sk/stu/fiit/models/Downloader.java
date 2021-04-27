@@ -31,8 +31,8 @@ public class Downloader extends Thread implements TableModelItem, Logging{
     private int totalSize = 0;
     private int downloaded = 0;
     private final Date startDate;
-    private static final Handler fileHandler = null;
-    private static final Logger LOGGER = Logger.getLogger(DownloadManager.class.getClass().getName());
+    private final Logger LOGGER;
+    
     
     /**
      * Constructor
@@ -42,13 +42,13 @@ public class Downloader extends Thread implements TableModelItem, Logging{
      * @throws MalformedURLException if the user given URL is not valid
      */
 
-    public Downloader(int id, String source, String destination) throws MalformedURLException, IOException {
+    public Downloader(int id, String source, String destination, Logger LOGGER) throws MalformedURLException, IOException {
         this.downloaderID = id;
         this.source = source;
         this.destination = destination;
         this.totalSize = new URL(source).openConnection().getContentLength();
         this.startDate = new Date();
-        Logging.setupHandler(fileHandler, LOGGER);
+        this.LOGGER = LOGGER;
     }
     
     public int getDownloaderId() {
@@ -74,6 +74,7 @@ public class Downloader extends Thread implements TableModelItem, Logging{
             
         } catch (IOException ex) {
             LOGGER.log(Level.SEVERE, "IO chyba pri stahovani", ex);
+            interrupt();
         } catch (InterruptedException ex) {
             LOGGER.log(Level.SEVERE, "ID: " + downloaderID + " - Stahovanie bolo prerusene", ex);
         }

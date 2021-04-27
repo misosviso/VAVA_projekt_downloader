@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import javax.net.ssl.SSLHandshakeException;
 
 /**
@@ -30,11 +33,15 @@ public class DownloadManager extends Thread{
     
     private final List<Downloader> downloads = new LinkedList<>();
     private static DownloadManager instanceOfSelf = null;
+    private static final Logger LOGGER = Logger.getLogger(DownloadManager.class.getClass().getName());
+    private static final Handler fileHandler = null;
 
     /**
      * private constructor
      */
-    private DownloadManager() {}
+    private DownloadManager() {
+        Logging.setupHandler(fileHandler, LOGGER);
+    }
     
     /**
      * start new download
@@ -47,7 +54,7 @@ public class DownloadManager extends Thread{
      */
     public Downloader download(String urlString, String pathString) throws MalformedURLException, IOException, SSLHandshakeException{
         int ID = RecordManager.getInstanceOfSelf().generateNewIndex();
-        Downloader objDownloader = new Downloader(ID, urlString, pathString);
+        Downloader objDownloader = new Downloader(ID, urlString, pathString, LOGGER);
         this.downloads.add(objDownloader);
         objDownloader.start(); 
         return objDownloader;

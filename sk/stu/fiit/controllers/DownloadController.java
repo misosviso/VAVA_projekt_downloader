@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.models.DownloadManager;
 import sk.stu.fiit.models.Downloader;
@@ -28,6 +30,7 @@ public class DownloadController implements CustomTableModel{
     }
     
     public void download(String urlString, String pathString) throws MalformedURLException, IOException {
+        System.out.println("status = " + getProgramStatus());
         Downloader objDownloader = manager.download(urlString, pathString);
 
     }
@@ -67,4 +70,14 @@ public class DownloadController implements CustomTableModel{
         }
     }
     
+    public String getProgramStatus(){
+        int downloads = this.manager.getDownloading().size();
+        switch(downloads){
+            case 0: return "Aktuálne sa nič nesťahuje";
+            case 1: return "Aktuálne sa sťahuje 1 súbor"; 
+            case 2: return "Aktuálne sa sťahuje 2 súbory"; 
+            case 3: return "Aktuálne sa sťahuje 3 súbory"; 
+            default: return "Aktuálne sa sťahuje " + downloads + " súborov";
+        }
+    }
 }
