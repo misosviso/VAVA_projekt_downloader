@@ -24,12 +24,14 @@ public class Unzipper {
      * method which unzips archive
      * @param source path to zip file
      * @param destination path to destination directory
+     * @param deleteOriginal
      * @throws IOException 
      */
-    public static void unzip(String source, String destination) throws IOException{
+    public static void unzip(String source, String destination, boolean deleteOriginal) throws IOException{
         
         File destDir = new File(destination);
         byte[] buffer = new byte[1024];
+        System.out.println("source = " + source);
         
         try (ZipInputStream zis = new ZipInputStream(new FileInputStream(source))) {
             
@@ -65,7 +67,9 @@ public class Unzipper {
             zis.closeEntry();
         } 
         
-        deleteFile(source);
+        if(deleteOriginal){
+            deleteFile(source);
+        }
         
     }
     

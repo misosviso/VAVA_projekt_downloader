@@ -77,12 +77,12 @@ public class RecordManager implements Serializable{
         }
     }
 
-    public void unzip(int selectedZipIndex, String destinationPath) throws IOException, NotZipException {
+    public void unzip(int selectedZipIndex, String destinationPath, boolean deleteOriginalZip) throws IOException, NotZipException {
         String filename = getZips().get(selectedZipIndex).getFilePath();
         if(!Unzipper.isZip(filename)){
             throw new NotZipException();
         }
-        Unzipper.unzip(filename, destinationPath);
+        Unzipper.unzip(filename, destinationPath, deleteOriginalZip);
     }
     
     private void save() throws IOException{

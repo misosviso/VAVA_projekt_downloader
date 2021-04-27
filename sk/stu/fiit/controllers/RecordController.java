@@ -36,8 +36,8 @@ public class RecordController implements CustomTableModel, Serializable{
                 new Object[]{"ID", "Dátum", "URL adresa", "Destinácia", "Status", "Veľkosť", "Trvanie"});
     }
     
-    public void unzipFile(int selectedZipIndex, String destinationPath) throws IOException, NotZipException{
-        this.manager.unzip(selectedZipIndex, destinationPath);
+    public void unzipFile(int selectedZipIndex, String destinationPath, boolean deleteOriginalFile) throws IOException, NotZipException{
+        this.manager.unzip(selectedZipIndex, destinationPath, deleteOriginalFile);
     }
     
     public String getSpecificDestination(int selectedRecordIndex){

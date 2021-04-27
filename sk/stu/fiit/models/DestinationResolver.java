@@ -6,14 +6,18 @@
 package sk.stu.fiit.models;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.exceptions.NoFileSelected;
+import sk.stu.fiit.models.unzipping.Unzipper;
 
 /**
- * Class that gets path and name of the file for downloading from user
+ * Class that gets path and name of the file from user by using JFileChooser
  * @author Admin
  */
 public class DestinationResolver {
@@ -43,6 +47,12 @@ public class DestinationResolver {
         return dirPath + "\\" + completeFilename;
     }
     
+    /**
+     * 
+     * @param startingFile
+     * @return
+     * @throws NoFileSelected 
+     */
     private static String getPathFromUser(File startingFile) throws NoFileSelected{
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setSelectedFile(startingFile);
@@ -85,11 +95,19 @@ public class DestinationResolver {
     
     /**
      * get path to unzip destination
+     * @param zipPath
      * @return path to unzip destination
      */
-    public static String getUnzipPath(){
+    public static String getUnzipPath(String zipPath){
+        File objZipFile = new File(zipPath);
+        int lastIndex = objZipFile.getName().lastIndexOf('.');
+        String dirName = objZipFile.getName().substring(0, lastIndex);
+        String dirPath = objZipFile.getParent(); // + "\\" + dirName;
         
-        JFileChooser fileChooser = new JFileChooser();
+        File objDirFile = new File(dirPath);
+        
+        JFileChooser fileChooser = new JFileChooser(new File(dirPath));
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int result = fileChooser.showSaveDialog(null);
         String path = null;
         
@@ -97,7 +115,19 @@ public class DestinationResolver {
             path = fileChooser.getSelectedFile().getAbsolutePath();
         }
         
+        System.out.println("path = " + path);
         return path;
+        
+    }
+    
+    public static void main(String[] args) {
+        try {
+            String zipPath = "C:\\Users\\42194\\Desktop\\unzip.zip";
+            String unzipPath = DestinationResolver.getUnzipPath(zipPath);
+            Unzipper.unzip(zipPath, unzipPath, false);
+        } catch (IOException ex) {
+            Logger.getLogger(DestinationResolver.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 }
