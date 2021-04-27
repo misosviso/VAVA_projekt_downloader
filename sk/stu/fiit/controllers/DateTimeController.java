@@ -19,7 +19,7 @@ import javax.swing.JLabel;
  */
 public class DateTimeController {
     
-    private static void countDateAndTime(JLabel dateLbl, JLabel timeLbl){
+    public static void countDateAndTime(JLabel dateLbl, JLabel timeLbl){
         new Thread(){
             @Override
             public void run() {
