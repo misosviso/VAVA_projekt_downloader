@@ -160,7 +160,7 @@ public class MainView extends javax.swing.JFrame{
         lblMain.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/polygonsBackground.jpg"))); // NOI18N
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/views/Bundle"); // NOI18N
-        lblMain.setText(bundle.getString("MainMenuView.lblAccommodation.text")); // NOI18N
+        lblMain.setText(bundle.getString("MainView.lblMain.text")); // NOI18N
         lblMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 245, 255), 3));
         lblMain.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblMain.setIconTextGap(0);
@@ -181,7 +181,7 @@ public class MainView extends javax.swing.JFrame{
         lblNewDownload.setForeground(new java.awt.Color(3, 1, 54));
         lblNewDownload.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNewDownload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/polygonsBackground.jpg"))); // NOI18N
-        lblNewDownload.setText(bundle.getString("MainMenuView.lblAccommodation.text_1")); // NOI18N
+        lblNewDownload.setText(bundle.getString("MainView.lblNewDownload.text_1")); // NOI18N
         lblNewDownload.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
         lblNewDownload.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblNewDownload.setIconTextGap(0);
@@ -202,7 +202,7 @@ public class MainView extends javax.swing.JFrame{
         lblManageDownloads.setForeground(new java.awt.Color(3, 1, 54));
         lblManageDownloads.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblManageDownloads.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/polygonsBackground.jpg"))); // NOI18N
-        lblManageDownloads.setText(bundle.getString("MainMenuView.lblAccommodation.text_2")); // NOI18N
+        lblManageDownloads.setText(bundle.getString("MainView.lblManageDownloads.text_1")); // NOI18N
         lblManageDownloads.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
         lblManageDownloads.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblManageDownloads.setIconTextGap(0);
@@ -223,7 +223,7 @@ public class MainView extends javax.swing.JFrame{
         lblUnzip.setForeground(new java.awt.Color(3, 1, 54));
         lblUnzip.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUnzip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/polygonsBackground.jpg"))); // NOI18N
-        lblUnzip.setText(bundle.getString("MainMenuView.lblAccommodation.text_3")); // NOI18N
+        lblUnzip.setText(bundle.getString("MainView.lblUnzip.text_1")); // NOI18N
         lblUnzip.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
         lblUnzip.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblUnzip.setIconTextGap(0);
@@ -244,7 +244,7 @@ public class MainView extends javax.swing.JFrame{
         lblHistory.setForeground(new java.awt.Color(3, 1, 54));
         lblHistory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/polygonsBackground.jpg"))); // NOI18N
-        lblHistory.setText(bundle.getString("MainMenuView.lblAccommodation.text_4")); // NOI18N
+        lblHistory.setText(bundle.getString("MainView.lblHistory.text_1")); // NOI18N
         lblHistory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
         lblHistory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblHistory.setIconTextGap(0);
@@ -272,7 +272,7 @@ public class MainView extends javax.swing.JFrame{
         lblStatus.setFont(new java.awt.Font("Arial", 1, 17)); // NOI18N
         lblStatus.setForeground(new java.awt.Color(250, 250, 250));
         lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblStatus.setText(bundle.getString("MainMenuView.jLabel46.text_1")); // NOI18N
+        lblStatus.setText(bundle.getString("MainView.lblStatus.text_1")); // NOI18N
         lblStatus.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 150, 40));
 
@@ -285,13 +285,13 @@ public class MainView extends javax.swing.JFrame{
         lblTime.setFont(new java.awt.Font("DS-Digital", 1, 24)); // NOI18N
         lblTime.setForeground(new java.awt.Color(250, 250, 250));
         lblTime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTime.setText(bundle.getString("MainMenuView.lblTime.text")); // NOI18N
+        lblTime.setText(bundle.getString("MainView.lblTime.text_1")); // NOI18N
         getContentPane().add(lblTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 480, 100, 40));
 
         lblDate.setFont(new java.awt.Font("DS-Digital", 1, 24)); // NOI18N
         lblDate.setForeground(new java.awt.Color(250, 250, 250));
         lblDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDate.setText(bundle.getString("MainMenuView.lblDate.text")); // NOI18N
+        lblDate.setText(bundle.getString("MainView.lblDate.text_1")); // NOI18N
         getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 480, 90, 40));
 
         lblBottomSplit.setBackground(new java.awt.Color(3, 1, 54));
@@ -463,13 +463,13 @@ public class MainView extends javax.swing.JFrame{
 
         lblDestinationP2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblDestinationP2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDestinationP2.setText(bundle.getString("MainMenuView.jLabel46.text_4")); // NOI18N
+        lblDestinationP2.setText(bundle.getString("MainView.lblDestinationP2.text_1")); // NOI18N
         lblDestinationP2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlNewDownloadP2.add(lblDestinationP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 140, 30));
 
         lblSourceP2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblSourceP2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSourceP2.setText(bundle.getString("MainMenuView.jLabel46.text_3")); // NOI18N
+        lblSourceP2.setText(bundle.getString("MainView.lblSourceP2.text_1")); // NOI18N
         lblSourceP2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlNewDownloadP2.add(lblSourceP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 140, 30));
 
@@ -542,13 +542,13 @@ public class MainView extends javax.swing.JFrame{
 
         lblDetailInfoP3.setFont(new java.awt.Font("Arial", 1, 19)); // NOI18N
         lblDetailInfoP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDetailInfoP3.setText(bundle.getString("MainMenuView.jLabel46.text_2")); // NOI18N
+        lblDetailInfoP3.setText(bundle.getString("MainView.lblDetailInfoP3.text_1")); // NOI18N
         lblDetailInfoP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlManageDownloadsP3.add(lblDetailInfoP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 190, 40));
 
         lblPercentageP3.setFont(new java.awt.Font("Arial", 1, 17)); // NOI18N
         lblPercentageP3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPercentageP3.setText(bundle.getString("MainMenuView.jLabel46.text")); // NOI18N
+        lblPercentageP3.setText(bundle.getString("MainView.lblPercentageP3.text_1")); // NOI18N
         lblPercentageP3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblPercentageP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlManageDownloadsP3.add(lblPercentageP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 410, 30));
