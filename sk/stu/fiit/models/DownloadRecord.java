@@ -6,6 +6,7 @@
 package sk.stu.fiit.models;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -37,27 +38,50 @@ public class DownloadRecord implements TableModelItem, Serializable{
     public DownloadRecord() {
     }
     
-    private String getStringStatus(){
+    public String getStringStatus(){
         if(interrupted){
             return "prerušené";
         }
         return "dokončené";
     }
     
-    private String getStringTimeElapsed(){
-        long seconds = TimeUnit.MILLISECONDS.toSeconds(timeElapsed) % 60;
-        long minutes = TimeUnit.MILLISECONDS.toMinutes(timeElapsed) % 60;
-        long hours = TimeUnit.MILLISECONDS.toHours(timeElapsed) % 60;
-        return String.valueOf(hours) + ":" + String.valueOf(minutes) + ":" + String.valueOf(seconds);
+    public String getStringTimeElapsed(){
+        long rawSec = TimeUnit.MILLISECONDS.toSeconds(timeElapsed) % 60;
+        long rawMin = TimeUnit.MILLISECONDS.toMinutes(timeElapsed) % 60;
+        long rawHour = TimeUnit.MILLISECONDS.toHours(timeElapsed) % 60;
+        String sec = String.format("%02d", rawSec);
+        String min = String.format("%02d", rawMin);
+        String hour = String.format("%02d", rawHour);
+        return sec + ":" + min + ":" + hour;
+    }
+    
+    public String getStringDate(){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+        return formatter.format(this.startingDate);
+    }
+    
+    public String getStringSize(){
+        DecimalFormat df = new DecimalFormat("0.00");
+        float kBsize = (float)size / (float)1024;
+        float MBsize = (float)kBsize / (float)1024;
+        float GBsize = (float)MBsize / (float)1024;
+        if(GBsize > 1){
+            return df.format(GBsize) + "GB";
+        } else if(MBsize > 1){
+            return df.format(MBsize) + "MB";
+        } else{
+            return df.format(kBsize) + "kB";
+        }
+        
     }
 
     @Override
     public Object[] getDataRow() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+        
         String strID = String.valueOf(this.ID);
-        String stringStartingDate = formatter.format(this.startingDate);
+        String stringStartingDate = getStringDate();
         String stringStatus = getStringStatus();
-        String stringSize = String.valueOf(this.size);
+        String stringSize = getStringSize();
         String stringTimeElapsed = getStringTimeElapsed();
         
         Object[] row = {strID, stringStartingDate, url, filePath, stringStatus, stringSize, stringTimeElapsed};

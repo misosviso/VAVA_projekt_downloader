@@ -28,7 +28,6 @@ public class DownloadManager extends Thread{
         return instanceOfSelf;
     }
     
-    private int lastIndex = 0;
     private final List<Downloader> downloads = new LinkedList<>();
     private static DownloadManager instanceOfSelf = null;
 
@@ -47,7 +46,7 @@ public class DownloadManager extends Thread{
      * @throws javax.net.ssl.SSLHandshakeException 
      */
     public Downloader download(String urlString, String pathString) throws MalformedURLException, IOException, SSLHandshakeException{
-        int ID = lastIndex++;
+        int ID = RecordManager.getInstanceOfSelf().generateNewIndex();
         Downloader objDownloader = new Downloader(ID, urlString, pathString);
         this.downloads.add(objDownloader);
         objDownloader.start(); 

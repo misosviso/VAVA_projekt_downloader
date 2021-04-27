@@ -35,8 +35,17 @@ public class RecordManager implements Serializable{
     
     private List<DownloadRecord> records = new LinkedList<>();
     private static RecordManager instanceOfSelf;
+    private int lastID;
 
     public RecordManager() {
+    }
+
+    public int getLastID() {
+        return lastID;
+    }
+
+    public void setLastID(int lastID) {
+        this.lastID = lastID;
     }
 
     public List<TableModelItem> getDownloadedModel() {
@@ -58,9 +67,9 @@ public class RecordManager implements Serializable{
     }
 
     public void addRecord(Downloader objDownloader) {
-        DownloadRecord objDownloadedRecord = new DownloadRecord(objDownloader);
-        records.add(objDownloadedRecord);
-        System.out.println(Arrays.toString(objDownloadedRecord.getDataRow()));
+        DownloadRecord objDownloadRecord = new DownloadRecord(objDownloader);
+        records.add(0, objDownloadRecord);
+        System.out.println(Arrays.toString(objDownloadRecord.getDataRow()));
         try {
             save();
         } catch (IOException ex) {
@@ -94,6 +103,16 @@ public class RecordManager implements Serializable{
 
     public static void setInstanceOfSelf(RecordManager instanceOfSelf) {
         RecordManager.instanceOfSelf = instanceOfSelf;
+    }
+
+    public DownloadRecord getSpecific(int selectedRecordIndex) {
+        return records.get(selectedRecordIndex);
+    }
+    
+    public int generateNewIndex(){
+        lastID++;
+        System.out.println("lastID = " + lastID);
+        return lastID;
     }
     
 }

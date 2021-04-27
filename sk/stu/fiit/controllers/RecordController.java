@@ -37,4 +37,28 @@ public class RecordController implements CustomTableModel, Serializable{
     public void unzipFile(int selectedZipIndex, String destinationPath) throws IOException, NotZipException{
         this.manager.unzip(selectedZipIndex, destinationPath);
     }
+    
+    public String getSpecificDestination(int selectedRecordIndex){
+        return this.manager.getSpecific(selectedRecordIndex).getFilePath();
+    }
+    
+    public String getSpecificSource(int selectedRecordIndex){
+        return this.manager.getSpecific(selectedRecordIndex).getUrl();
+    }
+    
+    public String getSpecificSize(int selectedRecordIndex){
+        return this.manager.getSpecific(selectedRecordIndex).getStringSize();
+    }
+    
+    public String getSpecificStatus(int selectedRowIndex){
+        return this.manager.getSpecific(selectedRowIndex).getStringStatus();
+    }
+    
+    public String getSpecificDate(int selectedRowIndex){
+        return this.manager.getSpecific(selectedRowIndex).getStringDate();
+    }
+    
+    public String getSpecificTime(int selectedRowIndex){
+        return this.manager.getSpecific(selectedRowIndex).getStringTimeElapsed();
+    }
 }
