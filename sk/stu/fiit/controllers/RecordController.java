@@ -7,6 +7,8 @@ package sk.stu.fiit.controllers;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.exceptions.NotZipException;
 import sk.stu.fiit.models.RecordManager;
@@ -60,5 +62,10 @@ public class RecordController implements CustomTableModel, Serializable{
     
     public String getSpecificTime(int selectedRowIndex){
         return this.manager.getSpecific(selectedRowIndex).getStringTimeElapsed();
+    }
+    
+    public void openFileLoacation(int selectedRecordIndex) throws IOException{
+        String path = getSpecificDestination(selectedRecordIndex);
+        Runtime.getRuntime().exec("explorer.exe /select," + path);
     }
 }
