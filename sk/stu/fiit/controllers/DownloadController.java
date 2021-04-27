@@ -9,10 +9,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import sk.stu.fiit.exceptions.InvalidUrlException;
 import sk.stu.fiit.models.DownloadManager;
-import sk.stu.fiit.models.Downloader;
+import sk.stu.utils.URLValidator;
 import sk.stu.fiit.views.MainView;
 
 /**
@@ -29,7 +29,10 @@ public class DownloadController implements CustomTableModel{
         this.view = view;
     }
     
-    public void download(String urlString, String pathString) throws MalformedURLException, IOException {
+    public void download(String urlString, String pathString) throws MalformedURLException, IOException, InvalidUrlException {
+        if(!URLValidator.isURLValid(urlString)){
+            throw new InvalidUrlException();
+        }
         manager.download(urlString, pathString);
 
     }
@@ -86,5 +89,30 @@ public class DownloadController implements CustomTableModel{
 
     public void cancelDownloading() {
         this.manager.cancelDownloading(selectedDownload);
+    }
+    
+    public String getDownloadingSource(){
+        return this.manager.getSource(selectedDownload);
+    }
+    public String getDownloadingDest(){
+        return this.manager.getDest(selectedDownload);
+    }
+    public String getDownloadingStart(){
+        return this.manager.getStart(selectedDownload);
+    }
+    public String getDownloadingTime(){
+        return this.manager.getDownTime(selectedDownload);
+    }
+    public String getDownloadingSize(){
+        return this.manager.getDownSize(selectedDownload);
+    }
+    public String getDownloadingStatus(){
+        return this.manager.getDownStat(selectedDownload);
+    }
+    public String getEstimatedTime(){
+        return this.manager.getEstTime(selectedDownload);
+    }
+    public void clean(){
+        this.manager.interruptAll();
     }
 }

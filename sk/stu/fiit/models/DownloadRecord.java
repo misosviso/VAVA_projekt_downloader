@@ -5,6 +5,7 @@
  */
 package sk.stu.fiit.models;
 
+import sk.stu.utils.UniversalFormatter;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -47,34 +48,15 @@ public class DownloadRecord implements TableModelItem, Serializable{
     }
     
     public String getStringTimeElapsed(){
-        long rawSec = TimeUnit.MILLISECONDS.toSeconds(timeElapsed) % 60;
-        long rawMin = TimeUnit.MILLISECONDS.toMinutes(timeElapsed) % 60;
-        long rawHour = TimeUnit.MILLISECONDS.toHours(timeElapsed) % 60;
-        String sec = String.format("%02d", rawSec);
-        String min = String.format("%02d", rawMin);
-        String hour = String.format("%02d", rawHour);
-        return hour + ":" + min + ":" + sec;
+        return UniversalFormatter.formatTimeElapsed(timeElapsed);
     }
     
     public String getStringDate(){
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
-        return formatter.format(this.startingDate);
+        return UniversalFormatter.formatDate(startingDate);
     }
     
     public String getStringSize(){
-        DecimalFormat df = new DecimalFormat("0.00");
-        System.out.println("size = " + size);
-        float kBsize = (float)size / (float)1024;
-        float MBsize = (float)kBsize / (float)1024;
-        float GBsize = (float)MBsize / (float)1024;
-        if(GBsize > 1){
-            return df.format(GBsize) + "GB";
-        } else if(MBsize > 1){
-            return df.format(MBsize) + "MB";
-        } else{
-            return df.format(kBsize) + "kB";
-        }
-        
+        return UniversalFormatter.formatSize(size);
     }
 
     @Override

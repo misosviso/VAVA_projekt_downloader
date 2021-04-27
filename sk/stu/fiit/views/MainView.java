@@ -16,7 +16,7 @@ import sk.stu.fiit.controllers.DateTimeController;
 import sk.stu.fiit.controllers.DownloadController;
 import sk.stu.fiit.controllers.RecordController;
 import sk.stu.fiit.exceptions.NoFileSelected;
-import sk.stu.fiit.models.DestinationResolver;
+import sk.stu.utils.DestinationResolver;
 
 /**
  *

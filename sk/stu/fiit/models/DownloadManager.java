@@ -7,6 +7,7 @@ package sk.stu.fiit.models;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Handler;
@@ -100,6 +101,40 @@ public class DownloadManager extends Thread{
 
     public void startProgressChecker(int selectedDownloaderIndex, MainView view) throws IOException {
         new DownloadProgressChecker(downloads.get(selectedDownloaderIndex), view).start();
+    }
+
+    public String getSource(int selectedDownload) {
+        return this.downloads.get(selectedDownload).getUrl();
+    }
+
+    public String getDest(int selectedDownload) {
+        return this.downloads.get(selectedDownload).getFilePath();
+    }
+
+    public String getStart(int selectedDownload) {
+        return this.downloads.get(selectedDownload).getStringDate();
+    }
+
+    public String getDownTime(int selectedDownload) {
+        return this.downloads.get(selectedDownload).getStringTimeElapsed();
+    }
+
+    public String getDownSize(int selectedDownload) {
+        return this.downloads.get(selectedDownload).getStringSize();
+    }
+
+    public String getDownStat(int selectedDownload) {
+        return this.downloads.get(selectedDownload).getStringStatus();
+    }
+
+    public String getEstTime(int selectedDownload) {
+        return this.downloads.get(selectedDownload).getStringEstTime();
+    }
+
+    public void interruptAll() {
+        downloads.forEach(download -> {
+            download.interrupt();
+        });
     }
 
 }
