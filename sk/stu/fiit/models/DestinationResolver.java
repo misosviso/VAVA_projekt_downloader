@@ -6,15 +6,11 @@
 package sk.stu.fiit.models;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.exceptions.NoFileSelected;
-import sk.stu.fiit.models.unzipping.Unzipper;
 
 /**
  * Class that gets path and name of the file from user by using JFileChooser
@@ -48,10 +44,10 @@ public class DestinationResolver {
     }
     
     /**
-     * 
-     * @param startingFile
-     * @return
-     * @throws NoFileSelected 
+     * get downloading destination path from user by using JFileChooser
+     * @param startingFile file where JFileChooser will start
+     * @return path
+     * @throws NoFileSelected user cancels JFileChooser - no file was chosen
      */
     private static String getPathFromUser(File startingFile) throws NoFileSelected{
         JFileChooser fileChooser = new JFileChooser();
@@ -67,19 +63,17 @@ public class DestinationResolver {
     }
     
     /**
-     * get path to download destination
+     * get downloading destination from user
      * @param urlSpec String URL address
      * @return String path + filename
      * @throws MalformedURLException if URL address is not valid
-     * @throws sk.stu.fiit.exceptions.NoFileSelected
+     * @throws sk.stu.fiit.exceptions.NoFileSelected User did not select any file
      */
     public static String getDownloadPath(String urlSpec) throws MalformedURLException, NoFileSelected{
         
         String defaultDirectoryPath = System.getProperty("user.home");
         String defaultFilePath = getDefaultPath(defaultDirectoryPath, urlSpec);
-        File defaultFile = new File(defaultFilePath);
-        
-        String userFilePath = getPathFromUser(defaultFile);
+        String userFilePath = getPathFromUser(new File(defaultFilePath));
         
         while(new File(userFilePath).exists()){
             int userInput = JOptionPane.showConfirmDialog(null, "Súbor s týmto menom už existuje aj tak pokračovať?", "Upozornenie", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -95,39 +89,25 @@ public class DestinationResolver {
     
     /**
      * get path to unzip destination
-     * @param zipPath
+     * @param zipPath path to zip file
      * @return path to unzip destination
+     * @throws sk.stu.fiit.exceptions.NoFileSelected User did not select any destination
      */
-    public static String getUnzipPath(String zipPath){
+    public static String getUnzipPath(String zipPath) throws NoFileSelected{
         File objZipFile = new File(zipPath);
-        int lastIndex = objZipFile.getName().lastIndexOf('.');
-        String dirName = objZipFile.getName().substring(0, lastIndex);
-        String dirPath = objZipFile.getParent(); // + "\\" + dirName;
-        
-        File objDirFile = new File(dirPath);
+        String dirPath = objZipFile.getParent();
         
         JFileChooser fileChooser = new JFileChooser(new File(dirPath));
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
         int result = fileChooser.showSaveDialog(null);
-        String path = null;
         
         if (result == JFileChooser.APPROVE_OPTION) {
-            path = fileChooser.getSelectedFile().getAbsolutePath();
+            return fileChooser.getSelectedFile().getAbsolutePath();
         }
         
-        System.out.println("path = " + path);
-        return path;
+        throw new NoFileSelected();
         
     }
     
-    public static void main(String[] args) {
-        try {
-            String zipPath = "C:\\Users\\42194\\Desktop\\unzip.zip";
-            String unzipPath = DestinationResolver.getUnzipPath(zipPath);
-            Unzipper.unzip(zipPath, unzipPath, false);
-        } catch (IOException ex) {
-            Logger.getLogger(DestinationResolver.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
 }

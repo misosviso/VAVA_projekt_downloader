@@ -9,11 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import sk.stu.fiit.models.DownloadManager;
-import sk.stu.fiit.models.Downloader;
 import sk.stu.fiit.views.MainView;
 
 /**
@@ -30,21 +27,20 @@ public class DownloadController implements CustomTableModel{
     }
     
     public void download(String urlString, String pathString) throws MalformedURLException, IOException {
-        System.out.println("status = " + getProgramStatus());
-        Downloader objDownloader = manager.download(urlString, pathString);
+        manager.download(urlString, pathString);
 
     }
     
-    public void pauseDownloading(int ID) throws InterruptedException, IOException {
-        manager.pauseDownloading(ID);
+    public void pauseDownloading(int selectedTableIndex) throws InterruptedException, IOException {
+        manager.pauseDownloading(selectedTableIndex);
     }
 
-    public void resumeDownloading(int ID) throws InterruptedException, IOException {
-        manager.resumeDownloading(ID);
+    public void resumeDownloading(int selectedDownloaderIndex) throws InterruptedException, IOException {
+        manager.resumeDownloading(selectedDownloaderIndex);
     }
     
-    public void cancelDownloading(int ID){
-        manager.cancelDownloading(ID);
+    public void cancelDownloading(int selectedDownloaderIndex){
+        manager.cancelDownloading(selectedDownloaderIndex);
     }
     
     public DefaultTableModel getDownloading(){
@@ -72,12 +68,16 @@ public class DownloadController implements CustomTableModel{
     
     public String getProgramStatus(){
         int downloads = this.manager.getDownloading().size();
-        switch(downloads){
-            case 0: return "Aktuálne sa nič nesťahuje";
-            case 1: return "Aktuálne sa sťahuje 1 súbor"; 
-            case 2: return "Aktuálne sa sťahuje 2 súbory"; 
-            case 3: return "Aktuálne sa sťahuje 3 súbory"; 
-            default: return "Aktuálne sa sťahuje " + downloads + " súborov";
-        }
+        return switch (downloads) {
+            case 0 -> "Aktuálne sa nič nesťahuje";
+            case 1 -> "Aktuálne sa sťahuje 1 súbor";
+            case 2 -> "Aktuálne sa sťahuje 2 súbory";
+            case 3 -> "Aktuálne sa sťahuje 3 súbory";
+            default -> "Aktuálne sa sťahuje " + downloads + " súborov";
+        };
+    }
+    
+    public void startProgressChecker(int selectedDownloaderIndex) throws IOException{
+        this.manager.startProgressChecker(selectedDownloaderIndex, this.view);
     }
 }
