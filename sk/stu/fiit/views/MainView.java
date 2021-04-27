@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import sk.stu.fiit.controllers.DateTimeController;
 import sk.stu.fiit.controllers.DownloadController;
 import sk.stu.fiit.controllers.RecordController;
 import sk.stu.fiit.exceptions.NoFileSelected;
@@ -36,6 +37,7 @@ public class MainView extends javax.swing.JFrame{
         this.downloadController = new DownloadController(this);
         this.recordController = new RecordController();
         initTables();
+        DateTimeController.countDateAndTime(lblDate, lblTime);
     }
     
 
@@ -80,20 +82,18 @@ public class MainView extends javax.swing.JFrame{
         btnOpenP1 = new javax.swing.JButton();
         lblBackgroundP1 = new javax.swing.JLabel();
         pnlNewDownloadP2 = new javax.swing.JPanel();
-        urlTF = new javax.swing.JTextField();
-        urlTF1 = new javax.swing.JTextField();
-        startDownloadingBtn = new javax.swing.JButton();
+        vldLocationP2 = new javax.swing.JTextField();
+        fldURLP2 = new javax.swing.JTextField();
+        btnChooseLocationP2 = new javax.swing.JButton();
         lblMainTitleP2 = new javax.swing.JLabel();
-        lblDetailInfoP5 = new javax.swing.JLabel();
-        lblDetailInfoP4 = new javax.swing.JLabel();
-        lblDestinationP4 = new javax.swing.JLabel();
-        fldDestinationP4 = new javax.swing.JTextField();
-        lblSizeP4 = new javax.swing.JLabel();
-        fldSizeP4 = new javax.swing.JTextField();
-        lblStatusP4 = new javax.swing.JLabel();
-        fldStatusP4 = new javax.swing.JTextField();
+        lblDestinationP2 = new javax.swing.JLabel();
+        lblSourceP2 = new javax.swing.JLabel();
+        lblSpaceP2 = new javax.swing.JLabel();
+        fldSpaceP2 = new javax.swing.JTextField();
+        lblSizeP2 = new javax.swing.JLabel();
+        fldSizeP2 = new javax.swing.JTextField();
         lblSeparator6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnDownloadP2 = new javax.swing.JButton();
         lblBackgroundP2 = new javax.swing.JLabel();
         pnlManageDownloadsP3 = new javax.swing.JPanel();
         lblSourceP3 = new javax.swing.JLabel();
@@ -159,7 +159,7 @@ public class MainView extends javax.swing.JFrame{
         lblMain.setForeground(new java.awt.Color(3, 1, 54));
         lblMain.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/polygonsBackground.jpg"))); // NOI18N
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Bundle"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("sk/stu/fiit/views/Bundle"); // NOI18N
         lblMain.setText(bundle.getString("MainMenuView.lblAccommodation.text")); // NOI18N
         lblMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 245, 255), 3));
         lblMain.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -279,7 +279,7 @@ public class MainView extends javax.swing.JFrame{
         fldStatus.setEditable(false);
         fldStatus.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         fldStatus.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        fldStatus.setText("Pripravený na sťahovanie");
+        fldStatus.setText(bundle.getString("MainView.fldStatus.text")); // NOI18N
         getContentPane().add(fldStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 490, 260, -1));
 
         lblTime.setFont(new java.awt.Font("DS-Digital", 1, 24)); // NOI18N
@@ -306,19 +306,19 @@ public class MainView extends javax.swing.JFrame{
         lblMainTitleP1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblMainTitleP1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainTitleP1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/lblBackground3.png"))); // NOI18N
-        lblMainTitleP1.setText("Downloader v2");
+        lblMainTitleP1.setText(bundle.getString("MainView.lblMainTitleP1.text")); // NOI18N
         lblMainTitleP1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         lblMainTitleP1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlMainPageP1.add(lblMainTitleP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 40, 860, 40));
 
         lblRecentDownloadsP1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblRecentDownloadsP1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRecentDownloadsP1.setText("Nedávno stiahnuté súbory");
+        lblRecentDownloadsP1.setText(bundle.getString("MainView.lblRecentDownloadsP1.text")); // NOI18N
         lblRecentDownloadsP1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlMainPageP1.add(lblRecentDownloadsP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 800, 30));
 
         btnDetailP1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnDetailP1.setText("Zobraziť detail");
+        btnDetailP1.setText(bundle.getString("MainView.btnDetailP1.text")); // NOI18N
         btnDetailP1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 200, 0), 2));
         pnlMainPageP1.add(btnDetailP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, 250, 30));
 
@@ -347,14 +347,14 @@ public class MainView extends javax.swing.JFrame{
 
         lblNameP1.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblNameP1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNameP1.setText("Názov:");
+        lblNameP1.setText(bundle.getString("MainView.lblNameP1.text")); // NOI18N
         lblNameP1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlMainPageP1.add(lblNameP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 90, 30));
 
         fldNameP1.setEditable(false);
         fldNameP1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         fldNameP1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        fldNameP1.setText("Downloader verzia 2.0");
+        fldNameP1.setText(bundle.getString("MainView.fldNameP1.text")); // NOI18N
         fldNameP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fldNameP1ActionPerformed(evt);
@@ -365,7 +365,7 @@ public class MainView extends javax.swing.JFrame{
         fldSubjectP1.setEditable(false);
         fldSubjectP1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         fldSubjectP1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        fldSubjectP1.setText("VaVa, LS 2021");
+        fldSubjectP1.setText(bundle.getString("MainView.fldSubjectP1.text")); // NOI18N
         fldSubjectP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fldSubjectP1ActionPerformed(evt);
@@ -375,14 +375,14 @@ public class MainView extends javax.swing.JFrame{
 
         lblSubjectP1.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblSubjectP1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSubjectP1.setText("Predmet:");
+        lblSubjectP1.setText(bundle.getString("MainView.lblSubjectP1.text")); // NOI18N
         lblSubjectP1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlMainPageP1.add(lblSubjectP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 90, 30));
 
         fldCreatorsP1.setEditable(false);
         fldCreatorsP1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         fldCreatorsP1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        fldCreatorsP1.setText("Michal Komora, Adam Kotvan");
+        fldCreatorsP1.setText(bundle.getString("MainView.fldCreatorsP1.text")); // NOI18N
         fldCreatorsP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fldCreatorsP1ActionPerformed(evt);
@@ -392,7 +392,7 @@ public class MainView extends javax.swing.JFrame{
 
         lblLanguageP1.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblLanguageP1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblLanguageP1.setText("Jazyk:");
+        lblLanguageP1.setText(bundle.getString("MainView.lblLanguageP1.text")); // NOI18N
         lblLanguageP1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlMainPageP1.add(lblLanguageP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 110, 30));
 
@@ -412,12 +412,12 @@ public class MainView extends javax.swing.JFrame{
 
         lblCreatorsP1.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblCreatorsP1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblCreatorsP1.setText("Tvorcovia:");
+        lblCreatorsP1.setText(bundle.getString("MainView.lblCreatorsP1.text")); // NOI18N
         lblCreatorsP1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlMainPageP1.add(lblCreatorsP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 110, 30));
 
         btnOpenP1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnOpenP1.setText("Otvoriť priečinok so súborom");
+        btnOpenP1.setText(bundle.getString("MainView.btnOpenP1.text")); // NOI18N
         btnOpenP1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 200, 0), 2));
         pnlMainPageP1.add(btnOpenP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 250, 30));
 
@@ -428,106 +428,90 @@ public class MainView extends javax.swing.JFrame{
         lblBackgroundP1.setPreferredSize(new java.awt.Dimension(800, 600));
         pnlMainPageP1.add(lblBackgroundP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 510));
 
-        tabbs.addTab("úvod", pnlMainPageP1);
+        tabbs.addTab(bundle.getString("MainView.pnlMainPageP1.TabConstraints.tabTitle"), pnlMainPageP1); // NOI18N
 
         pnlNewDownloadP2.setPreferredSize(new java.awt.Dimension(826, 522));
         pnlNewDownloadP2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        urlTF.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        urlTF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        urlTF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        pnlNewDownloadP2.add(urlTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 450, 30));
+        vldLocationP2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        vldLocationP2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        vldLocationP2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        pnlNewDownloadP2.add(vldLocationP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 450, 30));
 
-        urlTF1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        urlTF1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        urlTF1.setText("URL");
-        urlTF1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        pnlNewDownloadP2.add(urlTF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 600, 30));
+        fldURLP2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        fldURLP2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        fldURLP2.setText(bundle.getString("MainView.fldURLP2.text")); // NOI18N
+        fldURLP2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        pnlNewDownloadP2.add(fldURLP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 600, 30));
 
-        startDownloadingBtn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        startDownloadingBtn.setText("Vybrať lokáciu");
-        startDownloadingBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnChooseLocationP2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnChooseLocationP2.setText(bundle.getString("MainView.btnChooseLocationP2.text")); // NOI18N
+        btnChooseLocationP2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                startDownloadingBtnMouseReleased(evt);
+                btnChooseLocationP2MouseReleased(evt);
             }
         });
-        pnlNewDownloadP2.add(startDownloadingBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 140, 30));
+        pnlNewDownloadP2.add(btnChooseLocationP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 140, 30));
 
         lblMainTitleP2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblMainTitleP2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainTitleP2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/lblBackground2.jpg"))); // NOI18N
-        lblMainTitleP2.setText("Začni nové sťahovanie");
+        lblMainTitleP2.setText(bundle.getString("MainView.lblMainTitleP2.text")); // NOI18N
         lblMainTitleP2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         lblMainTitleP2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlNewDownloadP2.add(lblMainTitleP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 40, 860, 40));
 
-        lblDetailInfoP5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblDetailInfoP5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDetailInfoP5.setText(bundle.getString("MainMenuView.jLabel46.text_4")); // NOI18N
-        lblDetailInfoP5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlNewDownloadP2.add(lblDetailInfoP5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 140, 30));
+        lblDestinationP2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblDestinationP2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblDestinationP2.setText(bundle.getString("MainMenuView.jLabel46.text_4")); // NOI18N
+        lblDestinationP2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlNewDownloadP2.add(lblDestinationP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 140, 30));
 
-        lblDetailInfoP4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblDetailInfoP4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDetailInfoP4.setText(bundle.getString("MainMenuView.jLabel46.text_3")); // NOI18N
-        lblDetailInfoP4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlNewDownloadP2.add(lblDetailInfoP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 140, 30));
+        lblSourceP2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblSourceP2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSourceP2.setText(bundle.getString("MainMenuView.jLabel46.text_3")); // NOI18N
+        lblSourceP2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlNewDownloadP2.add(lblSourceP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 140, 30));
 
-        lblDestinationP4.setFont(new java.awt.Font("Arial", 3, 16)); // NOI18N
-        lblDestinationP4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDestinationP4.setText("Dostupné miesto:");
-        lblDestinationP4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlNewDownloadP2.add(lblDestinationP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 140, 30));
+        lblSpaceP2.setFont(new java.awt.Font("Arial", 3, 16)); // NOI18N
+        lblSpaceP2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSpaceP2.setText(bundle.getString("MainView.lblSpaceP2.text")); // NOI18N
+        lblSpaceP2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlNewDownloadP2.add(lblSpaceP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 140, 30));
 
-        fldDestinationP4.setEditable(false);
-        fldDestinationP4.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
-        fldDestinationP4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        fldDestinationP4.addActionListener(new java.awt.event.ActionListener() {
+        fldSpaceP2.setEditable(false);
+        fldSpaceP2.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        fldSpaceP2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        fldSpaceP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fldDestinationP4ActionPerformed(evt);
+                fldSpaceP2ActionPerformed(evt);
             }
         });
-        pnlNewDownloadP2.add(fldDestinationP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 230, 30));
+        pnlNewDownloadP2.add(fldSpaceP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 230, 30));
 
-        lblSizeP4.setFont(new java.awt.Font("Arial", 3, 16)); // NOI18N
-        lblSizeP4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSizeP4.setText("Veľkosť súboru:");
-        lblSizeP4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlNewDownloadP2.add(lblSizeP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 180, 30));
+        lblSizeP2.setFont(new java.awt.Font("Arial", 3, 16)); // NOI18N
+        lblSizeP2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSizeP2.setText(bundle.getString("MainView.lblSizeP2.text")); // NOI18N
+        lblSizeP2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlNewDownloadP2.add(lblSizeP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 180, 30));
 
-        fldSizeP4.setEditable(false);
-        fldSizeP4.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
-        fldSizeP4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        fldSizeP4.addActionListener(new java.awt.event.ActionListener() {
+        fldSizeP2.setEditable(false);
+        fldSizeP2.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        fldSizeP2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        fldSizeP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fldSizeP4ActionPerformed(evt);
+                fldSizeP2ActionPerformed(evt);
             }
         });
-        pnlNewDownloadP2.add(fldSizeP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 230, 30));
-
-        lblStatusP4.setFont(new java.awt.Font("Arial", 3, 16)); // NOI18N
-        lblStatusP4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblStatusP4.setText("Predpokladaný čas:");
-        lblStatusP4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlNewDownloadP2.add(lblStatusP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 180, 30));
-
-        fldStatusP4.setEditable(false);
-        fldStatusP4.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
-        fldStatusP4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        fldStatusP4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fldStatusP4ActionPerformed(evt);
-            }
-        });
-        pnlNewDownloadP2.add(fldStatusP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 230, 30));
+        pnlNewDownloadP2.add(fldSizeP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 230, 30));
 
         lblSeparator6.setBackground(new java.awt.Color(0, 0, 0));
         lblSeparator6.setOpaque(true);
         pnlNewDownloadP2.add(lblSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 780, 3));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/downloadButton.png"))); // NOI18N
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 204, 113), 2));
-        pnlNewDownloadP2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 310, 130, 80));
+        btnDownloadP2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/downloadButton.png"))); // NOI18N
+        btnDownloadP2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 204, 113), 2));
+        pnlNewDownloadP2.add(btnDownloadP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 310, 130, 80));
 
         lblBackgroundP2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/background.jpg"))); // NOI18N
         lblBackgroundP2.setInheritsPopupMenu(false);
@@ -536,13 +520,13 @@ public class MainView extends javax.swing.JFrame{
         lblBackgroundP2.setPreferredSize(new java.awt.Dimension(800, 600));
         pnlNewDownloadP2.add(lblBackgroundP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 510));
 
-        tabbs.addTab("sťahovanie", pnlNewDownloadP2);
+        tabbs.addTab(bundle.getString("MainView.pnlNewDownloadP2.TabConstraints.tabTitle"), pnlNewDownloadP2); // NOI18N
 
         pnlManageDownloadsP3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblSourceP3.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         lblSourceP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSourceP3.setText("Zdroj:");
+        lblSourceP3.setText(bundle.getString("MainView.lblSourceP3.text")); // NOI18N
         lblSourceP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlManageDownloadsP3.add(lblSourceP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 60, 40));
 
@@ -594,28 +578,28 @@ public class MainView extends javax.swing.JFrame{
         pnlManageDownloadsP3.add(scrollP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 800, 120));
 
         btnPauseP3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnPauseP3.setText("Pauza");
+        btnPauseP3.setText(bundle.getString("MainView.btnPauseP3.text")); // NOI18N
         btnPauseP3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(20, 3, 252), 2));
         pnlManageDownloadsP3.add(btnPauseP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 420, 110, 30));
 
         btnResumeP3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnResumeP3.setText("Obnoviť");
+        btnResumeP3.setText(bundle.getString("MainView.btnResumeP3.text")); // NOI18N
         btnResumeP3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 184, 9), 2));
         pnlManageDownloadsP3.add(btnResumeP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, 110, 30));
 
         btnAbortP3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnAbortP3.setText("Zrušiť");
+        btnAbortP3.setText(bundle.getString("MainView.btnAbortP3.text")); // NOI18N
         btnAbortP3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(252, 3, 3), 2));
         pnlManageDownloadsP3.add(btnAbortP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 420, 110, 30));
 
         btnShowDetailP3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        btnShowDetailP3.setText("Detailné informácie");
+        btnShowDetailP3.setText(bundle.getString("MainView.btnShowDetailP3.text")); // NOI18N
         pnlManageDownloadsP3.add(btnShowDetailP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 200, -1));
 
         lblMainTitleP3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblMainTitleP3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainTitleP3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/lblBackground.jpg"))); // NOI18N
-        lblMainTitleP3.setText("Aktuálne sťahovania");
+        lblMainTitleP3.setText(bundle.getString("MainView.lblMainTitleP3.text")); // NOI18N
         lblMainTitleP3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         lblMainTitleP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlManageDownloadsP3.add(lblMainTitleP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 40, 860, 40));
@@ -632,7 +616,7 @@ public class MainView extends javax.swing.JFrame{
 
         lblStartP3.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         lblStartP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblStartP3.setText("Začiatok:");
+        lblStartP3.setText(bundle.getString("MainView.lblStartP3.text")); // NOI18N
         lblStartP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlManageDownloadsP3.add(lblStartP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 180, 40));
 
@@ -648,7 +632,7 @@ public class MainView extends javax.swing.JFrame{
 
         lblDurationP3.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         lblDurationP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDurationP3.setText("Aktuálne trvanie:");
+        lblDurationP3.setText(bundle.getString("MainView.lblDurationP3.text")); // NOI18N
         lblDurationP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlManageDownloadsP3.add(lblDurationP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 180, 40));
 
@@ -664,13 +648,13 @@ public class MainView extends javax.swing.JFrame{
 
         lblRemainingP3.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         lblRemainingP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblRemainingP3.setText("Predpokladané trvanie:");
+        lblRemainingP3.setText(bundle.getString("MainView.lblRemainingP3.text")); // NOI18N
         lblRemainingP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlManageDownloadsP3.add(lblRemainingP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 180, 40));
 
         lblDestinationP3.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         lblDestinationP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDestinationP3.setText("Destinácia:");
+        lblDestinationP3.setText(bundle.getString("MainView.lblDestinationP3.text")); // NOI18N
         lblDestinationP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlManageDownloadsP3.add(lblDestinationP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 90, 40));
 
@@ -686,7 +670,7 @@ public class MainView extends javax.swing.JFrame{
 
         lblSizeP3.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         lblSizeP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSizeP3.setText("Veľkosť súboru:");
+        lblSizeP3.setText(bundle.getString("MainView.lblSizeP3.text")); // NOI18N
         lblSizeP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlManageDownloadsP3.add(lblSizeP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 180, 40));
 
@@ -702,7 +686,7 @@ public class MainView extends javax.swing.JFrame{
 
         lblStatusP3.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         lblStatusP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblStatusP3.setText("Stav:");
+        lblStatusP3.setText(bundle.getString("MainView.lblStatusP3.text")); // NOI18N
         lblStatusP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlManageDownloadsP3.add(lblStatusP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 180, 40));
 
@@ -723,20 +707,20 @@ public class MainView extends javax.swing.JFrame{
         lblBackgroundP3.setPreferredSize(new java.awt.Dimension(800, 600));
         pnlManageDownloadsP3.add(lblBackgroundP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 510));
 
-        tabbs.addTab("správca sťahovania", pnlManageDownloadsP3);
+        tabbs.addTab(bundle.getString("MainView.pnlManageDownloadsP3.TabConstraints.tabTitle"), pnlManageDownloadsP3); // NOI18N
 
         pnlUnzipP4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblMainTitleP4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblMainTitleP4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainTitleP4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/lblBackground4.jpg"))); // NOI18N
-        lblMainTitleP4.setText("Rozbaľovač");
+        lblMainTitleP4.setText(bundle.getString("MainView.lblMainTitleP4.text")); // NOI18N
         lblMainTitleP4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         lblMainTitleP4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlUnzipP4.add(lblMainTitleP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 40, 860, 40));
 
         btnUnzipP4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnUnzipP4.setText("Rozbaľ");
+        btnUnzipP4.setText(bundle.getString("MainView.btnUnzipP4.text")); // NOI18N
         btnUnzipP4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 135, 230), 2));
         pnlUnzipP4.add(btnUnzipP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 120, 30));
 
@@ -770,14 +754,14 @@ public class MainView extends javax.swing.JFrame{
         lblBackgroundP4.setPreferredSize(new java.awt.Dimension(800, 600));
         pnlUnzipP4.add(lblBackgroundP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 510));
 
-        tabbs.addTab("unzip", pnlUnzipP4);
+        tabbs.addTab(bundle.getString("MainView.pnlUnzipP4.TabConstraints.tabTitle"), pnlUnzipP4); // NOI18N
 
         pnlHistoryP5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblMainTitleP5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblMainTitleP5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainTitleP5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/lblBackground6.jpg"))); // NOI18N
-        lblMainTitleP5.setText("História sťahovaní");
+        lblMainTitleP5.setText(bundle.getString("MainView.lblMainTitleP5.text")); // NOI18N
         lblMainTitleP5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         lblMainTitleP5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlHistoryP5.add(lblMainTitleP5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 40, 860, 40));
@@ -806,7 +790,7 @@ public class MainView extends javax.swing.JFrame{
         pnlHistoryP5.add(scrollP5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 800, 280));
 
         btnDetailP5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnDetailP5.setText("Zobraziť detail");
+        btnDetailP5.setText(bundle.getString("MainView.btnDetailP5.text")); // NOI18N
         btnDetailP5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(232, 32, 36), 2));
         pnlHistoryP5.add(btnDetailP5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, 240, 30));
 
@@ -817,25 +801,25 @@ public class MainView extends javax.swing.JFrame{
         lblBackgroundP5.setPreferredSize(new java.awt.Dimension(800, 600));
         pnlHistoryP5.add(lblBackgroundP5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 510));
 
-        tabbs.addTab("história", pnlHistoryP5);
+        tabbs.addTab(bundle.getString("MainView.pnlHistoryP5.TabConstraints.tabTitle"), pnlHistoryP5); // NOI18N
 
         pnlDetailP6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblSourceP6.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblSourceP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSourceP6.setText("Zdroj:");
+        lblSourceP6.setText(bundle.getString("MainView.lblSourceP6.text")); // NOI18N
         lblSourceP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlDetailP6.add(lblSourceP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 90, 30));
 
         lblNameP6.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblNameP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNameP6.setText("Názov:");
+        lblNameP6.setText(bundle.getString("MainView.lblNameP6.text")); // NOI18N
         lblNameP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlDetailP6.add(lblNameP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 90, 30));
 
         lblSizeP6.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblSizeP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSizeP6.setText("Veľkosť:");
+        lblSizeP6.setText(bundle.getString("MainView.lblSizeP6.text")); // NOI18N
         lblSizeP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlDetailP6.add(lblSizeP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 90, 30));
 
@@ -871,13 +855,13 @@ public class MainView extends javax.swing.JFrame{
 
         lblDateP6.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblDateP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDateP6.setText("Dátum:");
+        lblDateP6.setText(bundle.getString("MainView.lblDateP6.text")); // NOI18N
         lblDateP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlDetailP6.add(lblDateP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 180, 30));
 
         lblDurationP6.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblDurationP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDurationP6.setText("Trvanie:");
+        lblDurationP6.setText(bundle.getString("MainView.lblDurationP6.text")); // NOI18N
         lblDurationP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlDetailP6.add(lblDurationP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 80, 30));
 
@@ -904,7 +888,7 @@ public class MainView extends javax.swing.JFrame{
         lblMainTitleP6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblMainTitleP6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainTitleP6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/lblBackground5.jpg"))); // NOI18N
-        lblMainTitleP6.setText("DETAILNÉ INFORMÁCIE");
+        lblMainTitleP6.setText(bundle.getString("MainView.lblMainTitleP6.text")); // NOI18N
         lblMainTitleP6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         lblMainTitleP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlDetailP6.add(lblMainTitleP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 50, 860, 50));
@@ -921,12 +905,12 @@ public class MainView extends javax.swing.JFrame{
 
         lblStatusP6.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblStatusP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblStatusP6.setText("Stav:");
+        lblStatusP6.setText(bundle.getString("MainView.lblStatusP6.text")); // NOI18N
         lblStatusP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlDetailP6.add(lblStatusP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, 70, 30));
 
         btnOpenP6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnOpenP6.setText("Otvoriť priečinok so súborom");
+        btnOpenP6.setText(bundle.getString("MainView.btnOpenP6.text")); // NOI18N
         btnOpenP6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240), 2));
         pnlDetailP6.add(btnOpenP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 270, 30));
 
@@ -937,7 +921,7 @@ public class MainView extends javax.swing.JFrame{
         lblBackgroundP6.setPreferredSize(new java.awt.Dimension(800, 600));
         pnlDetailP6.add(lblBackgroundP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 510));
 
-        tabbs.addTab("detail", pnlDetailP6);
+        tabbs.addTab(bundle.getString("MainView.pnlDetailP6.TabConstraints.tabTitle"), pnlDetailP6); // NOI18N
 
         getContentPane().add(tabbs, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 840, 490));
 
@@ -945,10 +929,10 @@ public class MainView extends javax.swing.JFrame{
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void startDownloadingBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startDownloadingBtnMouseReleased
+    private void btnChooseLocationP2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChooseLocationP2MouseReleased
         try {
             // TODO add your handling code here:
-            String urlString1 = urlTF1.getText();
+            String urlString1 = fldURLP2.getText();
             String pathString1 = DestinationResolver.getDownloadPath(urlString1);
             this.downloadController.download(urlString1, pathString1);
             
@@ -959,7 +943,7 @@ public class MainView extends javax.swing.JFrame{
         } catch (NoFileSelected ex) {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_startDownloadingBtnMouseReleased
+    }//GEN-LAST:event_btnChooseLocationP2MouseReleased
 
     private void lblMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMainMouseClicked
         switchPanel(lblMain, 0);
@@ -1054,17 +1038,13 @@ public class MainView extends javax.swing.JFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_fldStatusP3ActionPerformed
 
-    private void fldDestinationP4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldDestinationP4ActionPerformed
+    private void fldSpaceP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldSpaceP2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fldDestinationP4ActionPerformed
+    }//GEN-LAST:event_fldSpaceP2ActionPerformed
 
-    private void fldSizeP4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldSizeP4ActionPerformed
+    private void fldSizeP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldSizeP2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fldSizeP4ActionPerformed
-
-    private void fldStatusP4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldStatusP4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fldStatusP4ActionPerformed
+    }//GEN-LAST:event_fldSizeP2ActionPerformed
 
     private void fldSizeP6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldSizeP6ActionPerformed
         // TODO add your handling code here:
@@ -1146,8 +1126,10 @@ public class MainView extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbortP3;
+    private javax.swing.JButton btnChooseLocationP2;
     private javax.swing.JButton btnDetailP1;
     private javax.swing.JButton btnDetailP5;
+    private javax.swing.JButton btnDownloadP2;
     private javax.swing.JButton btnOpenP1;
     private javax.swing.JButton btnOpenP6;
     private javax.swing.JButton btnPauseP3;
@@ -1158,24 +1140,23 @@ public class MainView extends javax.swing.JFrame{
     private javax.swing.JTextField fldCreatorsP1;
     private javax.swing.JTextField fldDateP6;
     private javax.swing.JTextField fldDestinationP3;
-    private javax.swing.JTextField fldDestinationP4;
     private javax.swing.JTextField fldDurationP3;
     private javax.swing.JTextField fldDurationP6;
     private javax.swing.JTextField fldNameP1;
     private javax.swing.JTextField fldNameP6;
     private javax.swing.JTextField fldRemainingP3;
+    private javax.swing.JTextField fldSizeP2;
     private javax.swing.JTextField fldSizeP3;
-    private javax.swing.JTextField fldSizeP4;
     private javax.swing.JTextField fldSizeP6;
     private javax.swing.JTextField fldSourceP3;
     private javax.swing.JTextField fldSourceP6;
+    private javax.swing.JTextField fldSpaceP2;
     private javax.swing.JTextField fldStartP3;
     private javax.swing.JTextField fldStatus;
     private javax.swing.JTextField fldStatusP3;
-    private javax.swing.JTextField fldStatusP4;
     private javax.swing.JTextField fldStatusP6;
     private javax.swing.JTextField fldSubjectP1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField fldURLP2;
     private javax.swing.JLabel lblBackgroundP1;
     private javax.swing.JLabel lblBackgroundP2;
     private javax.swing.JLabel lblBackgroundP3;
@@ -1187,11 +1168,9 @@ public class MainView extends javax.swing.JFrame{
     private javax.swing.JLabel lblCreatorsP1;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblDateP6;
+    private javax.swing.JLabel lblDestinationP2;
     private javax.swing.JLabel lblDestinationP3;
-    private javax.swing.JLabel lblDestinationP4;
     private javax.swing.JLabel lblDetailInfoP3;
-    private javax.swing.JLabel lblDetailInfoP4;
-    private javax.swing.JLabel lblDetailInfoP5;
     private javax.swing.JLabel lblDurationP3;
     private javax.swing.JLabel lblDurationP6;
     private javax.swing.JButton lblEnglishP1;
@@ -1212,15 +1191,16 @@ public class MainView extends javax.swing.JFrame{
     private javax.swing.JLabel lblRecentDownloadsP1;
     private javax.swing.JLabel lblRemainingP3;
     private javax.swing.JLabel lblSeparator6;
+    private javax.swing.JLabel lblSizeP2;
     private javax.swing.JLabel lblSizeP3;
-    private javax.swing.JLabel lblSizeP4;
     private javax.swing.JLabel lblSizeP6;
+    private javax.swing.JLabel lblSourceP2;
     private javax.swing.JLabel lblSourceP3;
     private javax.swing.JLabel lblSourceP6;
+    private javax.swing.JLabel lblSpaceP2;
     private javax.swing.JLabel lblStartP3;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblStatusP3;
-    private javax.swing.JLabel lblStatusP4;
     private javax.swing.JLabel lblStatusP6;
     private javax.swing.JLabel lblSubjectP1;
     private javax.swing.JLabel lblTime;
@@ -1238,14 +1218,12 @@ public class MainView extends javax.swing.JFrame{
     private javax.swing.JScrollPane scrollP3;
     private javax.swing.JScrollPane scrollP4;
     private javax.swing.JScrollPane scrollP5;
-    private javax.swing.JButton startDownloadingBtn;
     private javax.swing.JTabbedPane tabbs;
     private javax.swing.JTable tblDownloadsP1;
     private javax.swing.JTable tblDownloadsP3;
     private javax.swing.JTable tblDownloadsP4;
     private javax.swing.JTable tblDownloadsP5;
-    private javax.swing.JTextField urlTF;
-    private javax.swing.JTextField urlTF1;
+    private javax.swing.JTextField vldLocationP2;
     // End of variables declaration//GEN-END:variables
 
     public void updateProgress(int[] downloadState){
