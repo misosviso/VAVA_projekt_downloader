@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.models;
+package sk.stu.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,10 +19,4 @@ public class URLValidator {
         Matcher matcher = pattern.matcher(urlSpec);
         return matcher.find();
     }
-    
-    public static void main(String[] args) {
-        String url = "https://editor.swagger.io/";
-        System.out.println("isURLValid(url) = " + isURLValid(url));
-    }
-    
 }

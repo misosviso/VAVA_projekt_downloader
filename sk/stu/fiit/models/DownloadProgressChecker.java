@@ -37,7 +37,7 @@ public class DownloadProgressChecker extends Thread{
             {
                 downloadState[0] = objDownloader.getDownloaded();
                 this.view.updateProgress(downloadState);
-                sleep(500);
+                sleep(5000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(DownloadProgressChecker.class.getName()).log(Level.SEVERE, null, ex);
             }
