@@ -8,6 +8,8 @@ package sk.stu.fiit.views;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -79,7 +81,7 @@ public final class MainView extends javax.swing.JFrame{
         fldCreatorsP1 = new javax.swing.JTextField();
         lblLanguageP1 = new javax.swing.JLabel();
         btnSlovakP1 = new javax.swing.JButton();
-        lblEnglishP1 = new javax.swing.JButton();
+        btnEnglishP1 = new javax.swing.JButton();
         lblCreatorsP1 = new javax.swing.JLabel();
         btnOpenP1 = new javax.swing.JButton();
         lblBackgroundP1 = new javax.swing.JLabel();
@@ -151,6 +153,7 @@ public final class MainView extends javax.swing.JFrame{
         lblStatusP6 = new javax.swing.JLabel();
         btnOpenP6 = new javax.swing.JButton();
         lblBackgroundP6 = new javax.swing.JLabel();
+        lblTempP6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Downloader v2"); // NOI18N
@@ -399,8 +402,13 @@ public final class MainView extends javax.swing.JFrame{
         pnlMainPageP1.add(lblLanguageP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 110, 30));
 
         btnSlovakP1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/slovakFlag.jpg"))); // NOI18N
-        btnSlovakP1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        btnSlovakP1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 2));
         btnSlovakP1.setEnabled(false);
+        btnSlovakP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSlovakP1MouseClicked(evt);
+            }
+        });
         btnSlovakP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSlovakP1ActionPerformed(evt);
@@ -408,9 +416,14 @@ public final class MainView extends javax.swing.JFrame{
         });
         pnlMainPageP1.add(btnSlovakP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 100, -1));
 
-        lblEnglishP1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/flagUK.jpg"))); // NOI18N
-        lblEnglishP1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        pnlMainPageP1.add(lblEnglishP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, 100, 40));
+        btnEnglishP1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/flagUK.jpg"))); // NOI18N
+        btnEnglishP1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 250, 250), 2));
+        btnEnglishP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEnglishP1MouseClicked(evt);
+            }
+        });
+        pnlMainPageP1.add(btnEnglishP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, 100, 40));
 
         lblCreatorsP1.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblCreatorsP1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -953,6 +966,9 @@ public final class MainView extends javax.swing.JFrame{
         lblBackgroundP6.setPreferredSize(new java.awt.Dimension(800, 600));
         pnlDetailP6.add(lblBackgroundP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 840, 510));
 
+        lblTempP6.setText(bundle.getString("MainView.lblTempP6.text")); // NOI18N
+        pnlDetailP6.add(lblTempP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, -1, -1));
+
         tabbs.addTab(bundle.getString("MainView.pnlDetailP6.TabConstraints.tabTitle"), pnlDetailP6); // NOI18N
 
         getContentPane().add(tabbs, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 840, 490));
@@ -1127,7 +1143,7 @@ public final class MainView extends javax.swing.JFrame{
         this.fldDateP6.setText(this.recordController.getSpecificDate(selectedTableIndex));
         this.fldStatusP6.setText(this.recordController.getSpecificStatus(selectedTableIndex));
         this.fldDurationP6.setText(this.recordController.getSpecificTime(selectedTableIndex));
-        switchPanel(lblActualPanel, 5);
+        switchPanel(lblTempP6, 5);
     }//GEN-LAST:event_btnDetailP5MouseClicked
 
     private void btnOpenP6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOpenP6MouseClicked
@@ -1171,9 +1187,16 @@ public final class MainView extends javax.swing.JFrame{
     }//GEN-LAST:event_btnResumeP3MouseClicked
 
     private void btnAbortP3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbortP3MouseClicked
-        // TODO add your handling code here:
         this.downloadController.cancelDownloading();
     }//GEN-LAST:event_btnAbortP3MouseClicked
+
+    private void btnEnglishP1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnglishP1MouseClicked
+        this.switchToEnglish();
+    }//GEN-LAST:event_btnEnglishP1MouseClicked
+
+    private void btnSlovakP1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSlovakP1MouseClicked
+        this.switchToSlovak();
+    }//GEN-LAST:event_btnSlovakP1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1219,6 +1242,7 @@ public final class MainView extends javax.swing.JFrame{
     private javax.swing.JButton btnDetailP1;
     private javax.swing.JButton btnDetailP5;
     private javax.swing.JButton btnDownloadP2;
+    private javax.swing.JButton btnEnglishP1;
     private javax.swing.JButton btnOpenP1;
     private javax.swing.JButton btnOpenP6;
     private javax.swing.JButton btnPauseP3;
@@ -1262,7 +1286,6 @@ public final class MainView extends javax.swing.JFrame{
     private javax.swing.JLabel lblDetailInfoP3;
     private javax.swing.JLabel lblDurationP3;
     private javax.swing.JLabel lblDurationP6;
-    private javax.swing.JButton lblEnglishP1;
     private javax.swing.JLabel lblHistory;
     private javax.swing.JLabel lblLanguageP1;
     private javax.swing.JLabel lblMain;
@@ -1292,6 +1315,7 @@ public final class MainView extends javax.swing.JFrame{
     private javax.swing.JLabel lblStatusP3;
     private javax.swing.JLabel lblStatusP6;
     private javax.swing.JLabel lblSubjectP1;
+    private javax.swing.JLabel lblTempP6;
     private javax.swing.JLabel lblTime;
     private javax.swing.JLabel lblTopPanel;
     private javax.swing.JLabel lblTopSplit;
@@ -1350,6 +1374,101 @@ public final class MainView extends javax.swing.JFrame{
     
     public void showDownloadDetail(int selectedIndex){
         this.downloadController.setUpIndex(selectedIndex);
+    }
+    
+    public void switchToSlovak(){
+        btnSlovakP1.setEnabled(false);
+        btnEnglishP1.setEnabled(true);
+        
+        Locale l = new Locale("sk", "SK");
+        ResourceBundle r = ResourceBundle.getBundle("sk.stu.fiit.views/Bundle", l);
+        
+        btnUnzipP4.setText(r.getString("MainView.btnUnzipP4.text"));
+        lblMainTitleP4.setText(r.getString("MainView.lblMainTitleP4.text"));
+        lblStatusP3.setText(r.getString("MainView.lblStatusP3.text"));
+        lblSizeP3.setText(r.getString("MainView.lblSizeP3.text"));
+        btnOpenP6.setText(r.getString("MainView.btnOpenP6.text"));
+        lblStatusP6.setText(r.getString("MainView.lblStatusP6.text"));
+        lblMainTitleP6.setText(r.getString("MainView.lblMainTitleP6.text"));
+        lblDestinationP3.setText(r.getString("MainView.lblDestinationP3.text"));
+        lblRemainingP3.setText(r.getString("MainView.lblRemainingP3.text"));
+        lblDurationP3.setText(r.getString("MainView.lblDurationP3.text"));
+        lblStartP3.setText(r.getString("MainView.lblStartP3.text"));
+        lblMainTitleP3.setText(r.getString("MainView.lblMainTitleP3.text"));
+        btnShowDetailP3.setText(r.getString("MainView.btnShowDetailP3.text"));
+        btnAbortP3.setText(r.getString("MainView.btnAbortP3.text"));
+        lblDurationP6.setText(r.getString("MainView.lblDurationP6.text"));
+        lblDateP6.setText(r.getString("MainView.lblDateP6.text"));
+        lblSizeP6.setText(r.getString("MainView.lblSizeP6.text"));
+        lblNameP6.setText(r.getString("MainView.lblNameP6.text"));
+        lblSourceP6.setText(r.getString("MainView.lblSourceP6.text"));
+        btnResumeP3.setText(r.getString("MainView.btnResumeP3.text"));
+        btnPauseP3.setText(r.getString("MainView.btnPauseP3.text"));
+        lblSourceP3.setText(r.getString("MainView.lblSourceP3.text"));
+        lblMainTitleP2.setText(r.getString("MainView.lblMainTitleP2.text"));
+        btnOpenP1.setText(r.getString("MainView.btnOpenP1.text"));
+        lblCreatorsP1.setText(r.getString("MainView.lblCreatorsP1.text"));
+        lblLanguageP1.setText(r.getString("MainView.lblLanguageP1.text"));
+        lblSubjectP1.setText(r.getString("MainView.lblSubjectP1.text"));
+        fldNameP1.setText(r.getString("MainView.fldNameP1.text"));
+        lblNameP1.setText(r.getString("MainView.lblNameP1.text"));
+        btnDetailP1.setText(r.getString("MainView.btnDetailP1.text"));
+        lblRecentDownloadsP1.setText(r.getString("MainView.lblRecentDownloadsP1.text"));
+        fldStatus.setText(r.getString("MainView.fldStatus.text"));
+        btnDetailP5.setText(r.getString("MainView.btnDetailP5.text"));
+        lblMainTitleP5.setText(r.getString("MainView.lblMainTitleP5.text"));
+        btnChooseLocationP2.setText(r.getString("MainView.btnChooseLocationP2.text"));
+        lblSizeP2.setText(r.getString("MainView.lblSizeP2.text"));
+        lblSpaceP2.setText(r.getString("MainView.lblSpaceP2.text"));
+        fldURLP2.setText(r.getString("MainView.fldURLP2.text"));
+        
+    }
+    
+    public void switchToEnglish(){
+        btnSlovakP1.setEnabled(true);
+        btnEnglishP1.setEnabled(false);
+        
+        Locale l = new Locale("en", "GB");
+        ResourceBundle r = ResourceBundle.getBundle("sk.stu.fiit.views/Bundle_en_GB", l);
+        
+        btnUnzipP4.setText(r.getString("MainView.btnUnzipP4.text"));
+        lblMainTitleP4.setText(r.getString("MainView.lblMainTitleP4.text"));
+        lblStatusP3.setText(r.getString("MainView.lblStatusP3.text"));
+        lblSizeP3.setText(r.getString("MainView.lblSizeP3.text"));
+        btnOpenP6.setText(r.getString("MainView.btnOpenP6.text"));
+        lblStatusP6.setText(r.getString("MainView.lblStatusP6.text"));
+        lblMainTitleP6.setText(r.getString("MainView.lblMainTitleP6.text"));
+        lblDestinationP3.setText(r.getString("MainView.lblDestinationP3.text"));
+        lblRemainingP3.setText(r.getString("MainView.lblRemainingP3.text"));
+        lblDurationP3.setText(r.getString("MainView.lblDurationP3.text"));
+        lblStartP3.setText(r.getString("MainView.lblStartP3.text"));
+        lblMainTitleP3.setText(r.getString("MainView.lblMainTitleP3.text"));
+        btnShowDetailP3.setText(r.getString("MainView.btnShowDetailP3.text"));
+        btnAbortP3.setText(r.getString("MainView.btnAbortP3.text"));
+        lblDurationP6.setText(r.getString("MainView.lblDurationP6.text"));
+        lblDateP6.setText(r.getString("MainView.lblDateP6.text"));
+        lblSizeP6.setText(r.getString("MainView.lblSizeP6.text"));
+        lblNameP6.setText(r.getString("MainView.lblNameP6.text"));
+        lblSourceP6.setText(r.getString("MainView.lblSourceP6.text"));
+        btnResumeP3.setText(r.getString("MainView.btnResumeP3.text"));
+        btnPauseP3.setText(r.getString("MainView.btnPauseP3.text"));
+        lblSourceP3.setText(r.getString("MainView.lblSourceP3.text"));
+        lblMainTitleP2.setText(r.getString("MainView.lblMainTitleP2.text"));
+        btnOpenP1.setText(r.getString("MainView.btnOpenP1.text"));
+        lblCreatorsP1.setText(r.getString("MainView.lblCreatorsP1.text"));
+        lblLanguageP1.setText(r.getString("MainView.lblLanguageP1.text"));
+        lblSubjectP1.setText(r.getString("MainView.lblSubjectP1.text"));
+        fldNameP1.setText(r.getString("MainView.fldNameP1.text"));
+        lblNameP1.setText(r.getString("MainView.lblNameP1.text"));
+        btnDetailP1.setText(r.getString("MainView.btnDetailP1.text"));
+        lblRecentDownloadsP1.setText(r.getString("MainView.lblRecentDownloadsP1.text"));
+        fldStatus.setText(r.getString("MainView.fldStatus.text"));
+        btnDetailP5.setText(r.getString("MainView.btnDetailP5.text"));
+        lblMainTitleP5.setText(r.getString("MainView.lblMainTitleP5.text"));
+        btnChooseLocationP2.setText(r.getString("MainView.btnChooseLocationP2.text"));
+        lblSizeP2.setText(r.getString("MainView.lblSizeP2.text"));
+        lblSpaceP2.setText(r.getString("MainView.lblSpaceP2.text"));
+        fldURLP2.setText(r.getString("MainView.fldURLP2.text"));
     }
     
 }
