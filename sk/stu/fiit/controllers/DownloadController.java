@@ -62,13 +62,13 @@ public class DownloadController implements CustomTableModel{
     
     public String getProgramStatus(){
         int downloads = this.manager.getDownloading().size();
-        return switch (downloads) {
-            case 0 -> "Aktuálne sa nič nesťahuje";
-            case 1 -> "Aktuálne sa sťahuje 1 súbor";
-            case 2 -> "Aktuálne sa sťahuje 2 súbory";
-            case 3 -> "Aktuálne sa sťahuje 3 súbory";
-            default -> "Aktuálne sa sťahuje " + downloads + " súborov";
-        };
+        switch (downloads) {
+            case 0: return "Aktuálne sa nič nesťahuje";
+            case 1: return"Aktuálne sa sťahuje 1 súbor";
+            case 2: return"Aktuálne sa sťahuje 2 súbory";
+            case 3: return"Aktuálne sa sťahuje 3 súbory";
+            default: return "Aktuálne sa sťahuje " + downloads + " súborov";
+        }
     }
     
     public void startProgressChecker(int selectedDownloaderIndex) throws IOException{
