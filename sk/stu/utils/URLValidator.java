@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class URLValidator {
     
     public static boolean isURLValid(String urlSpec){
-        Pattern pattern = Pattern.compile("http://|https://www\\..*\\..*", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("http://|https://.*\\..*\\..*", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(urlSpec);
         return matcher.find();
     }

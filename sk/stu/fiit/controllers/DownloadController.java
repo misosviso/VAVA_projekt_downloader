@@ -71,8 +71,8 @@ public class DownloadController implements CustomTableModel{
         }
     }
     
-    public void startProgressChecker(int selectedDownloaderIndex) throws IOException{
-        this.manager.startProgressChecker(selectedDownloaderIndex, this.view);
+    public void startProgressChecker(){
+        this.manager.startProgressChecker(selectedDownload, this.view);
     }
     
     public void setUpIndex(int index){
@@ -111,6 +111,9 @@ public class DownloadController implements CustomTableModel{
     }
     public String getEstimatedTime(){
         return this.manager.getEstTime(selectedDownload);
+    }
+    public String getPercentage(){
+        return this.manager.getPercentage(selectedDownload);
     }
     public void clean(){
         this.manager.interruptAll();

@@ -6,6 +6,8 @@ package sk.stu.fiit.views;
  * and open the template in the editor.
  */
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Locale;
@@ -17,6 +19,7 @@ import javax.swing.JOptionPane;
 import sk.stu.fiit.controllers.DateTimeController;
 import sk.stu.fiit.controllers.DownloadController;
 import sk.stu.fiit.controllers.RecordController;
+import sk.stu.fiit.exceptions.InvalidUrlException;
 import sk.stu.fiit.exceptions.NoFileSelected;
 import sk.stu.utils.DestinationResolver;
 
@@ -40,6 +43,8 @@ public final class MainView extends javax.swing.JFrame{
         this.recordController = new RecordController();
         recordController.setUpView(this);
         startInitingTables();
+        updateTables();
+        initWindowlistener();
     }
     
     public void startInitingTables(){
@@ -984,8 +989,8 @@ public final class MainView extends javax.swing.JFrame{
             String pathString1 = DestinationResolver.getDownloadPath(urlString1);
             this.downloadController.download(urlString1, pathString1);
             
-        } catch (MalformedURLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Skontroluj si URL zlaticko");
+        } catch (MalformedURLException | InvalidUrlException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Nesprávna URL adresa");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(rootPane, "IO chybicka");
         } catch (NoFileSelected ex) {
@@ -1172,7 +1177,8 @@ public final class MainView extends javax.swing.JFrame{
         if(selectedIndex < 0){
             return;
         }
-        showDownloadDetail(selectedIndex);
+        downloadController.setUpIndex(selectedIndex);
+        downloadController.startProgressChecker();
     }//GEN-LAST:event_tblDownloadsP3MouseClicked
 
     private void btnResumeP3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResumeP3MouseClicked
@@ -1338,14 +1344,6 @@ public final class MainView extends javax.swing.JFrame{
     private javax.swing.JTable tblDownloadsP5;
     private javax.swing.JTextField vldLocationP2;
     // End of variables declaration//GEN-END:variables
-
-    public void updateProgress(long[] downloadState){
-        float percentage = (float)downloadState[0] / (float)downloadState[1] * 100;
-        System.out.println("percentage = " + percentage);
-//        this.progressBarP3.setMaximum(downloadState[1]);
-//        this.progressBarP3.setValue(downloadState[0]);
-        this.lblPercentageP3.setText(percentage + "%");
-    }
     
     public void switchPanel(JLabel lblActual, int switchTo){
         this.lblActualPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
@@ -1356,11 +1354,11 @@ public final class MainView extends javax.swing.JFrame{
     
     public void updateTables(){
         tblDownloadsP1.setModel(recordController.getRecent());
-        //        try {
-//            tblDownloadsP4.setModel(recordController.getDownloadedZips());
-//        } catch (IOException ex) {
-//            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            tblDownloadsP4.setModel(recordController.getDownloadedZips());
+        } catch (IOException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         tblDownloadsP5.setModel(recordController.getDownloaded());
     }
     
@@ -1372,8 +1370,15 @@ public final class MainView extends javax.swing.JFrame{
         this.fldStatus.setText(this.downloadController.getProgramStatus());
     }
     
-    public void showDownloadDetail(int selectedIndex){
-        this.downloadController.setUpIndex(selectedIndex);
+    public void showDownloadDetail(){
+        fldSourceP3.setText(downloadController.getDownloadingSource());
+        fldDestinationP3.setText(downloadController.getDownloadingDest());
+        fldSizeP3.setText(downloadController.getDownloadingSize());
+        fldStatusP3.setText(downloadController.getDownloadingStatus());
+        fldStartP3.setText(downloadController.getDownloadingStart());
+        fldDurationP3.setText(downloadController.getDownloadingTime());
+        fldRemainingP3.setText(downloadController.getEstimatedTime());
+        lblPercentageP3.setText(downloadController.getPercentage());
     }
     
     public void switchToSlovak(){
@@ -1471,4 +1476,23 @@ public final class MainView extends javax.swing.JFrame{
         fldURLP2.setText(r.getString("MainView.fldURLP2.text"));
     }
     
+    public void eraseDetailFields(){
+        System.out.println("mazem");
+    }
+
+    private void initWindowlistener() {
+        this.addWindowListener(new WindowAdapter() { 
+            @Override
+            public void windowClosing(WindowEvent evt) { 
+                int result = JOptionPane.showConfirmDialog(null, "Všetky sťahovania sa zrušia");
+                setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                if(result == JOptionPane.YES_OPTION){
+                    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    downloadController.clean();
+                    System.exit(0);
+                }
+                
+            } 
+        });
+    }
 }

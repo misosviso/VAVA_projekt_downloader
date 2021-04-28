@@ -61,7 +61,7 @@ public class RecordManager implements Serializable{
     private List<DownloadRecord> getZips() throws IOException{
        List<DownloadRecord> zipDownloads = new LinkedList<>();
         for (DownloadRecord record : records) {
-            if(Unzipper.isZip(record.getFilePath()) && !record.isInterrupted()){
+            if(!record.isInterrupted() && Unzipper.isZip(record.getFilePath())){
                 zipDownloads.add(record);
             }
         } 
@@ -75,12 +75,7 @@ public class RecordManager implements Serializable{
     public void addRecord(Downloader objDownloader) {
         DownloadRecord objDownloadRecord = new DownloadRecord(objDownloader);
         records.add(0, objDownloadRecord);
-        System.out.println(Arrays.toString(objDownloadRecord.getDataRow()));
-        try {
-            save();
-        } catch (IOException ex) {
-            Logger.getLogger(RecordManager.class.getName()).log(Level.SEVERE, "Nepodarilo sa serializovat", ex);
-        }
+        updateTables();
     }
 
     public void unzip(int selectedZipIndex, String destinationPath, boolean deleteOriginalZip) throws IOException, NotZipException {
@@ -91,7 +86,7 @@ public class RecordManager implements Serializable{
         Unzipper.unzip(filename, destinationPath, deleteOriginalZip);
     }
     
-    private void save() throws IOException{
+    public void save() throws IOException{
         Serializer.XMLserialize(this);
     }
     
@@ -122,7 +117,6 @@ public class RecordManager implements Serializable{
     }
 
     public void updateTables() {
-        System.out.println("view = " + view);
         view.updateTables();
     }
     

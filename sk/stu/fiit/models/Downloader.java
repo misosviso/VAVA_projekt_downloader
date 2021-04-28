@@ -12,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -98,7 +97,6 @@ public class Downloader extends Thread implements TableModelItem, Logging{
         if(isInterrupted()){
             new File(destination).delete();
         }
-        System.out.println("isInterrupted = " + isInterrupted());
         RecordManager.getRecordManager().addRecord(this);
         DownloadManager.getDownloadManager().remove(this);
     }
@@ -113,7 +111,6 @@ public class Downloader extends Thread implements TableModelItem, Logging{
     
     public void pauseDownloading() throws InterruptedException{
         LOGGER.log(Level.INFO, "ID: " + downloaderID + " - Stahovanie bolo pozastavene pouzivatelom");
-        
         running = false;
     }
 
@@ -175,5 +172,9 @@ public class Downloader extends Thread implements TableModelItem, Logging{
 
     public String getStringDate() {
         return UniversalFormatter.formatDate(startDate);
+    }
+
+    public String getPercentage() {
+        return String.valueOf((float)downloaded / (float)totalSize * 100) + "%";
     }
 }

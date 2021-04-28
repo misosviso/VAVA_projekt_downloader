@@ -7,10 +7,7 @@ package sk.stu.fiit.models;
 
 import sk.stu.utils.UniversalFormatter;
 import java.io.Serializable;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -27,6 +24,7 @@ public class DownloadRecord implements TableModelItem, Serializable{
     private long timeElapsed;
 
     public DownloadRecord(Downloader downloader) {
+        System.out.println("Vytvaram novy zaznam");
         this.ID = downloader.getDownloaderId();
         this.startingDate = (Date) downloader.getDate();
         this.url = downloader.getUrl();
@@ -34,7 +32,6 @@ public class DownloadRecord implements TableModelItem, Serializable{
         this.interrupted = downloader.isInterrupted();
         this.size = downloader.getTotalSize();
         this.timeElapsed = new Date().getTime() - downloader.getDate().getTime();
-        RecordManager.getInstanceOfSelf().updateTables();
     }
 
     public DownloadRecord() {

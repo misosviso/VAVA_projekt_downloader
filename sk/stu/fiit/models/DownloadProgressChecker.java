@@ -16,32 +16,26 @@ import sk.stu.fiit.views.MainView;
  */
 public class DownloadProgressChecker extends Thread{
     
-    private Downloader objDownloader;
-    private final long[] downloadState;
+    private final Downloader objDownloader;
     private final MainView view;
 
     public DownloadProgressChecker(Downloader objDownloader, MainView view) {
         this.objDownloader = objDownloader;
-        this.downloadState = new long[]{0, objDownloader.getTotalSize()};
         this.view = view;
-    }
-
-    public void setObjDownloader(Downloader objDownloader) {
-        this.objDownloader = objDownloader;
     }
 
     @Override
     public void run() {
-        while(!isInterrupted()){
+        while(!isInterrupted() && objDownloader.isAlive()){
             try 
             {
-                downloadState[0] = objDownloader.getDownloaded();
-                this.view.updateProgress(downloadState);
-                sleep(5000);
+                this.view.showDownloadDetail();
+                sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(DownloadProgressChecker.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        this.view.eraseDetailFields();
     }
 
     
