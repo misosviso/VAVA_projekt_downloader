@@ -115,7 +115,7 @@ public class DownloadController implements CustomTableModel{
     public String getPercentage(){
         return this.manager.getPercentage(selectedDownload);
     }
-    public void clean(){
+    public void clean() throws IOException{
         this.manager.interruptAll();
     }
 }
