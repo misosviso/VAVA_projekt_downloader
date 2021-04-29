@@ -9,7 +9,6 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-import sk.stu.fiit.exceptions.SizeUnknownException;
 
 /**
  *
@@ -17,7 +16,7 @@ import sk.stu.fiit.exceptions.SizeUnknownException;
  */
 public class UniversalFormatter {
     
-    public static String formatSize(long size) throws SizeUnknownException{
+    public static String formatSize(long size){
         System.out.println("size = " + size);
         DecimalFormat df = new DecimalFormat("0.00");
         
