@@ -91,7 +91,7 @@ public final class MainView extends javax.swing.JFrame{
         btnOpenP1 = new javax.swing.JButton();
         lblBackgroundP1 = new javax.swing.JLabel();
         pnlNewDownloadP2 = new javax.swing.JPanel();
-        vldLocationP2 = new javax.swing.JTextField();
+        fldLocationP2 = new javax.swing.JTextField();
         fldURLP2 = new javax.swing.JTextField();
         btnChooseLocationP2 = new javax.swing.JButton();
         lblMainTitleP2 = new javax.swing.JLabel();
@@ -451,10 +451,10 @@ public final class MainView extends javax.swing.JFrame{
         pnlNewDownloadP2.setPreferredSize(new java.awt.Dimension(826, 522));
         pnlNewDownloadP2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        vldLocationP2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        vldLocationP2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        vldLocationP2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        pnlNewDownloadP2.add(vldLocationP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 450, 30));
+        fldLocationP2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        fldLocationP2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        fldLocationP2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        pnlNewDownloadP2.add(fldLocationP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 450, 30));
 
         fldURLP2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         fldURLP2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -982,7 +982,7 @@ public final class MainView extends javax.swing.JFrame{
         try {
             String urlString1 = fldURLP2.getText();
             String pathString1 = DestinationResolver.getDownloadPath(urlString1);
-            vldLocationP2.setText(pathString1);
+            fldLocationP2.setText(pathString1);
             
             //fldSpaceP2.setText("dostupné miesto");
             //fldSizeP2.setText("veľkosť súboru");
@@ -1205,7 +1205,13 @@ public final class MainView extends javax.swing.JFrame{
     private void btnDownloadP2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDownloadP2MouseReleased
         try {
             String urlString1 = fldURLP2.getText();
-            String pathString1 = vldLocationP2.getText();
+            String pathString1 = fldLocationP2.getText();
+            
+            fldURLP2.setText("URL");
+            fldLocationP2.setText("");
+            fldSpaceP2.setText("");
+            fldSizeP2.setText("");
+            
             this.downloadController.download(urlString1, pathString1);
             
         } catch (MalformedURLException | InvalidUrlException ex) {
@@ -1271,6 +1277,7 @@ public final class MainView extends javax.swing.JFrame{
     private javax.swing.JTextField fldDestinationP3;
     private javax.swing.JTextField fldDurationP3;
     private javax.swing.JTextField fldDurationP6;
+    private javax.swing.JTextField fldLocationP2;
     private javax.swing.JTextField fldNameP1;
     private javax.swing.JTextField fldNameP6;
     private javax.swing.JTextField fldRemainingP3;
@@ -1351,7 +1358,6 @@ public final class MainView extends javax.swing.JFrame{
     private javax.swing.JTable tblDownloadsP3;
     private javax.swing.JTable tblDownloadsP4;
     private javax.swing.JTable tblDownloadsP5;
-    private javax.swing.JTextField vldLocationP2;
     // End of variables declaration//GEN-END:variables
     
     public void switchPanel(JLabel lblActual, int switchTo){
