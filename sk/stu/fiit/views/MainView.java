@@ -1537,7 +1537,6 @@ public final class MainView extends javax.swing.JFrame{
         lblPercentage_P3.setText(r.getString("MainView.lblPercentage_P3.text"));
         
         updateTables();
-        
     }
     
     public void switchToEnglish(){
@@ -1594,6 +1593,8 @@ public final class MainView extends javax.swing.JFrame{
         lblDestination_P2.setText(r.getString("MainView.lblDestination_P2.text"));
         lblSource_P2.setText(r.getString("MainView.lblSource_P2.text"));
         lblPercentage_P3.setText(r.getString("MainView.lblPercentage_P3.text"));
+        
+        updateTables();
     }
     
     public void eraseDetailFields(){
