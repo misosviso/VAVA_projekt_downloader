@@ -1409,7 +1409,6 @@ public final class MainView extends javax.swing.JFrame{
         lblDurationP3.setText(r.getString("MainView.lblDurationP3.text"));
         lblStartP3.setText(r.getString("MainView.lblStartP3.text"));
         lblMainTitleP3.setText(r.getString("MainView.lblMainTitleP3.text"));
-        btnShowDetailP3.setText(r.getString("MainView.btnShowDetailP3.text"));
         btnAbortP3.setText(r.getString("MainView.btnAbortP3.text"));
         lblDurationP6.setText(r.getString("MainView.lblDurationP6.text"));
         lblDateP6.setText(r.getString("MainView.lblDateP6.text"));
@@ -1457,7 +1456,6 @@ public final class MainView extends javax.swing.JFrame{
         lblDurationP3.setText(r.getString("MainView.lblDurationP3.text"));
         lblStartP3.setText(r.getString("MainView.lblStartP3.text"));
         lblMainTitleP3.setText(r.getString("MainView.lblMainTitleP3.text"));
-        btnShowDetailP3.setText(r.getString("MainView.btnShowDetailP3.text"));
         btnAbortP3.setText(r.getString("MainView.btnAbortP3.text"));
         lblDurationP6.setText(r.getString("MainView.lblDurationP6.text"));
         lblDateP6.setText(r.getString("MainView.lblDateP6.text"));

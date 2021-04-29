@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Handler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLHandshakeException;
 import sk.stu.fiit.views.MainView;
@@ -130,11 +131,15 @@ public class DownloadManager extends Thread{
         return this.downloads.get(selectedDownload).getStringEstTime();
     }
 
-    public void interruptAll() throws IOException {
+    public void interruptAll(){
         downloads.forEach(download -> {
             download.interrupt();
         });
-        RecordManager.getInstanceOfSelf().save();
+        try {
+            RecordManager.getInstanceOfSelf().save();
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, "Udaje o stahovaniach sa nepodarilo serializovat", ex);
+        }
     }
 
     public String getPercentage(int selectedDownload) {
