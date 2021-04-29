@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -65,6 +66,7 @@ public class Unzipper {
                 zipEntry = zis.getNextEntry();
             }
             zis.closeEntry();
+            JOptionPane.showMessageDialog(null, "Rozbalovanie bolo uspesne");
         } 
         
         if(deleteOriginal){

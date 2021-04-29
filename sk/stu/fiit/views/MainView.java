@@ -21,6 +21,7 @@ import sk.stu.fiit.controllers.DownloadController;
 import sk.stu.fiit.controllers.RecordController;
 import sk.stu.fiit.exceptions.InvalidUrlException;
 import sk.stu.fiit.exceptions.NoFileSelected;
+import sk.stu.fiit.exceptions.NotZipException;
 import sk.stu.utils.DestinationResolver;
 
 /**
@@ -328,6 +329,11 @@ public final class MainView extends javax.swing.JFrame{
         btnDetailP1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnDetailP1.setText(bundle.getString("MainView.btnDetailP1.text")); // NOI18N
         btnDetailP1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 200, 0), 2));
+        btnDetailP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDetailP1MouseClicked(evt);
+            }
+        });
         pnlMainPageP1.add(btnDetailP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, 250, 30));
 
         tblDownloadsP1.setModel(new javax.swing.table.DefaultTableModel(
@@ -437,6 +443,11 @@ public final class MainView extends javax.swing.JFrame{
         btnOpenP1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnOpenP1.setText(bundle.getString("MainView.btnOpenP1.text")); // NOI18N
         btnOpenP1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 200, 0), 2));
+        btnOpenP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOpenP1MouseClicked(evt);
+            }
+        });
         pnlMainPageP1.add(btnOpenP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 250, 30));
 
         lblBackgroundP1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/background.jpg"))); // NOI18N
@@ -758,6 +769,11 @@ public final class MainView extends javax.swing.JFrame{
         btnUnzipP4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnUnzipP4.setText(bundle.getString("MainView.btnUnzipP4.text")); // NOI18N
         btnUnzipP4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 135, 230), 2));
+        btnUnzipP4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnzipP4MouseClicked(evt);
+            }
+        });
         pnlUnzipP4.add(btnUnzipP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 120, 30));
 
         tblDownloadsP4.setModel(new javax.swing.table.DefaultTableModel(
@@ -984,12 +1000,14 @@ public final class MainView extends javax.swing.JFrame{
             String pathString1 = DestinationResolver.getDownloadPath(urlString1);
             fldLocationP2.setText(pathString1);
             
-            //fldSpaceP2.setText("dostupné miesto");
-            //fldSizeP2.setText("veľkosť súboru");
+            fldSpaceP2.setText(downloadController.getFreeSpace());
+            fldSizeP2.setText(downloadController.getFileSize(urlString1));
             
         } catch (MalformedURLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Nesprávna URL adresa");
         } catch (NoFileSelected ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnChooseLocationP2MouseReleased
@@ -1138,13 +1156,17 @@ public final class MainView extends javax.swing.JFrame{
     private void btnDetailP5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetailP5MouseClicked
         // TODO add your handling code here:
         int selectedTableIndex = tblDownloadsP5.getSelectedRow();
-        this.fldNameP6.setText(this.recordController.getSpecificDestination(selectedTableIndex));
-        this.fldSourceP6.setText(this.recordController.getSpecificSource(selectedTableIndex));
-        this.fldSizeP6.setText(this.recordController.getSpecificSize(selectedTableIndex));
-        this.fldDateP6.setText(this.recordController.getSpecificDate(selectedTableIndex));
-        this.fldStatusP6.setText(this.recordController.getSpecificStatus(selectedTableIndex));
-        this.fldDurationP6.setText(this.recordController.getSpecificTime(selectedTableIndex));
-        switchPanel(lblTempP6, 5);
+        if(selectedTableIndex >= 0){
+            this.fldNameP6.setText(this.recordController.getSpecificDestination(selectedTableIndex));
+            this.fldSourceP6.setText(this.recordController.getSpecificSource(selectedTableIndex));
+            this.fldSizeP6.setText(this.recordController.getSpecificSize(selectedTableIndex));
+            this.fldDateP6.setText(this.recordController.getSpecificDate(selectedTableIndex));
+            this.fldStatusP6.setText(this.recordController.getSpecificStatus(selectedTableIndex));
+            this.fldDurationP6.setText(this.recordController.getSpecificTime(selectedTableIndex));
+            switchPanel(lblTempP6, 5);
+        } else{
+            JOptionPane.showMessageDialog(lblBottomPanel, "Vyberte zaznam");
+        }
     }//GEN-LAST:event_btnDetailP5MouseClicked
 
     private void btnOpenP6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOpenP6MouseClicked
@@ -1173,7 +1195,6 @@ public final class MainView extends javax.swing.JFrame{
         }
         downloadController.setUpIndex(selectedIndex);
         downloadController.startProgressChecker();
-        //progressBarP3. update
     }//GEN-LAST:event_tblDownloadsP3MouseClicked
 
     private void btnResumeP3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResumeP3MouseClicked
@@ -1220,6 +1241,51 @@ public final class MainView extends javax.swing.JFrame{
             JOptionPane.showMessageDialog(rootPane, "IO chybicka");
         }
     }//GEN-LAST:event_btnDownloadP2MouseReleased
+
+    private void btnUnzipP4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnzipP4MouseClicked
+        // TODO add your handling code here:
+        int selectedZipIndex = tblDownloadsP4.getSelectedRow();
+        if(selectedZipIndex >= 0){
+            try {
+                recordController.unzipFile(selectedZipIndex);
+            } catch (IOException ex) {
+                Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NotZipException ex) {
+                Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoFileSelected ex) {
+                Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnUnzipP4MouseClicked
+
+    private void btnOpenP1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOpenP1MouseClicked
+        // TODO add your handling code here:
+        int selectedIndex = tblDownloadsP1.getSelectedRow();
+        if(selectedIndex >= 0){
+            try {
+                recordController.openFileLoacation(selectedIndex);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(lblBottomPanel, "Subor bol premiestneny alebo odstraneny");
+            }
+        }
+        
+    }//GEN-LAST:event_btnOpenP1MouseClicked
+
+    private void btnDetailP1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetailP1MouseClicked
+        // TODO add your handling code here:
+        int selectedTableIndex = tblDownloadsP1.getSelectedRow();
+        if(selectedTableIndex >= 0){
+            this.fldNameP6.setText(this.recordController.getSpecificDestination(selectedTableIndex));
+            this.fldSourceP6.setText(this.recordController.getSpecificSource(selectedTableIndex));
+            this.fldSizeP6.setText(this.recordController.getSpecificSize(selectedTableIndex));
+            this.fldDateP6.setText(this.recordController.getSpecificDate(selectedTableIndex));
+            this.fldStatusP6.setText(this.recordController.getSpecificStatus(selectedTableIndex));
+            this.fldDurationP6.setText(this.recordController.getSpecificTime(selectedTableIndex));
+            switchPanel(lblTempP6, 5);
+        } else{
+            JOptionPane.showMessageDialog(lblBottomPanel, "Vyberte zaznam");
+        }
+    }//GEN-LAST:event_btnDetailP1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1368,21 +1434,40 @@ public final class MainView extends javax.swing.JFrame{
     }
     
     public void updateTables(){
-        tblDownloadsP1.setModel(recordController.getRecent());
-        try {
-            tblDownloadsP4.setModel(recordController.getDownloadedZips());
-        } catch (IOException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        if(!btnSlovakP1.isEnabled()){
+            tblDownloadsP1.setModel(recordController.getRecent());
+            try {
+                tblDownloadsP4.setModel(recordController.getDownloadedZips());
+            } catch (IOException ex) {
+                Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            tblDownloadsP5.setModel(recordController.getDownloaded());
+        } else{
+            tblDownloadsP1.setModel(recordController.getRecentEnglish());
+            try {
+                tblDownloadsP4.setModel(recordController.getDownloadedZipsEnglish());
+            } catch (IOException ex) {
+                Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            tblDownloadsP5.setModel(recordController.getDownloadedEnglish());
         }
-        tblDownloadsP5.setModel(recordController.getDownloaded());
     }
     
     public void displayDownloadTable(){
-        tblDownloadsP3.setModel(downloadController.getDownloading());
+        if(!btnSlovakP1.isEnabled()){
+            tblDownloadsP3.setModel(downloadController.getDownloading());
+        } else{
+            tblDownloadsP3.setModel(downloadController.getDownloadingEnglish());
+        }
     }
 
     public void displayState() {
-        this.fldStatus.setText(this.downloadController.getProgramStatus());
+        if(!btnSlovakP1.isEnabled()){
+            this.fldStatus.setText(this.downloadController.getProgramStatus());
+        }
+        else{
+           this.fldStatus.setText(this.downloadController.getProgramStatusEnglish()); 
+        }
     }
     
     public void showDownloadDetail(){
@@ -1394,6 +1479,8 @@ public final class MainView extends javax.swing.JFrame{
         fldDurationP3.setText(downloadController.getDownloadingTime());
         fldRemainingP3.setText(downloadController.getEstimatedTime());
         lblPercentageP3.setText(downloadController.getPercentage());
+        progressBarP3.setMaximum((int) downloadController.getTotalSize());
+        progressBarP3.setMaximum((int) downloadController.getDownloadedSize());
     }
     
     public void switchToSlovak(){
@@ -1441,6 +1528,8 @@ public final class MainView extends javax.swing.JFrame{
         lblSpaceP2.setText(r.getString("MainView.lblSpaceP2.text"));
         fldURLP2.setText(r.getString("MainView.fldURLP2.text"));
         
+        updateTables();
+        
     }
     
     public void switchToEnglish(){
@@ -1487,6 +1576,8 @@ public final class MainView extends javax.swing.JFrame{
         lblSizeP2.setText(r.getString("MainView.lblSizeP2.text"));
         lblSpaceP2.setText(r.getString("MainView.lblSpaceP2.text"));
         fldURLP2.setText(r.getString("MainView.fldURLP2.text"));
+        
+        updateTables();
     }
     
     public void eraseDetailFields(){

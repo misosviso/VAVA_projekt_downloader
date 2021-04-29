@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import sk.stu.fiit.exceptions.SizeUnknownException;
 
 /**
  *
@@ -16,8 +17,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class UniversalFormatter {
     
-    public static String formatSize(long size){
+    public static String formatSize(long size) throws SizeUnknownException{
+        System.out.println("size = " + size);
         DecimalFormat df = new DecimalFormat("0.00");
+        
         float kBsize = (float)size / (float)1024;
         float MBsize = (float)kBsize / (float)1024;
         float GBsize = (float)MBsize / (float)1024;

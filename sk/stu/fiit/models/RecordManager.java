@@ -13,9 +13,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sk.stu.fiit.IO.Serializer;
+import sk.stu.fiit.exceptions.NoFileSelected;
 import sk.stu.fiit.exceptions.NotZipException;
 import sk.stu.fiit.models.unzipping.Unzipper;
 import sk.stu.fiit.views.MainView;
+import sk.stu.utils.DestinationResolver;
 
 /**
  *
@@ -78,8 +80,9 @@ public class RecordManager implements Serializable{
         updateTables();
     }
 
-    public void unzip(int selectedZipIndex, String destinationPath, boolean deleteOriginalZip) throws IOException, NotZipException {
+    public void unzip(int selectedZipIndex, boolean deleteOriginalZip) throws IOException, NotZipException, NoFileSelected {
         String filename = getZips().get(selectedZipIndex).getFilePath();
+        String destinationPath = DestinationResolver.getUnzipPath(filename);
         if(!Unzipper.isZip(filename)){
             throw new NotZipException();
         }
