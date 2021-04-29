@@ -146,4 +146,12 @@ public class DownloadManager extends Thread{
         return this.downloads.get(selectedDownload).getPercentage();
     }
 
+    public long getDownloadedSize(int selectedDownload) {
+       return this.downloads.get(selectedDownload).getDownloaded();
+    }
+
+    public long getTotalSize(int selectedDownload) {
+        return this.downloads.get(selectedDownload).getTotalSize();
+    }
+
 }

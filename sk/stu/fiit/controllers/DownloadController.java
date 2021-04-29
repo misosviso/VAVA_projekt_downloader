@@ -8,12 +8,16 @@ package sk.stu.fiit.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.text.DecimalFormat;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import sk.stu.fiit.exceptions.InvalidUrlException;
 import sk.stu.fiit.models.DownloadManager;
 import sk.stu.utils.URLValidator;
 import sk.stu.fiit.views.MainView;
+import sk.stu.utils.UniversalFormatter;
 
 /**
  *
@@ -44,30 +48,31 @@ public class DownloadController implements CustomTableModel{
     
     public String getFreeSpace(){
         long space = new File("c:").getUsableSpace();
-        DecimalFormat df = new DecimalFormat("0.00");
-        float kBspace = (float)space / (float)1024;
-        float MBspace = (float)kBspace / (float)1024;
-        float GBspace = (float)MBspace / (float)1024;
-        float TBspace = (float)GBspace / (float)1024;
-        if(TBspace > 1){
-            return df.format(TBspace) + "TB";
-        } else if(GBspace > 1){
-            return df.format(GBspace) + "GB";
-        } else if(MBspace > 1){
-            return df.format(MBspace) + "MB";
-        } else{
-            return df.format(kBspace) + "kB";
-        }
+        return UniversalFormatter.formatSize(space);
+    }
+    
+    public String getFileSize(String urlAddress) throws MalformedURLException, IOException {
+        System.out.println("Idem vypocitat file size");
+        return  UniversalFormatter.formatSize(new URL(urlAddress).openConnection().getContentLength());
     }
     
     public String getProgramStatus(){
         int downloads = this.manager.getDownloading().size();
         switch (downloads) {
-            case 0: return "Aktuálne sa nič nesťahuje";
+            case 0: return "Pripravený na sťahovanie";
             case 1: return"Aktuálne sa sťahuje 1 súbor";
             case 2: return"Aktuálne sa sťahuje 2 súbory";
             case 3: return"Aktuálne sa sťahuje 3 súbory";
             default: return "Aktuálne sa sťahuje " + downloads + " súborov";
+        }
+    }
+    
+    public String getProgramStatusEnglish(){
+        int downloads = this.manager.getDownloading().size();
+        switch (downloads) {
+            case 0: return "Ready for downloading";
+            case 1: return "1 file is being downloaded";
+            default: return downloads + " files are being downloaded";
         }
     }
     
@@ -118,4 +123,18 @@ public class DownloadController implements CustomTableModel{
     public void clean(){
         this.manager.interruptAll();
     }
+
+    public TableModel getDownloadingEnglish() {
+        return new DefaultTableModel(getTableData(this.manager.getDownloading()), 
+                new Object[]{"ID", "Date", "URL address", "Destination", "Status", "Size", "Duration"});
+    }
+
+    public long getDownloadedSize() {
+        return manager.getDownloadedSize(selectedDownload);
+    }
+
+    public long getTotalSize() {
+        return manager.getTotalSize(selectedDownload);
+    }
+
 }
