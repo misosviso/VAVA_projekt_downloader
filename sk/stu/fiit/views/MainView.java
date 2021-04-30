@@ -1599,7 +1599,7 @@ public final class MainView extends javax.swing.JFrame{
         this.addWindowListener(new WindowAdapter() { 
             @Override
             public void windowClosing(WindowEvent evt) { 
-                int result = JOptionPane.showConfirmDialog(null, "Všetky sťahovania sa zrušia");
+                int result = JOptionPane.showConfirmDialog(null, "Zavretím aplikácie prerušíte prípadné sťahovania\nAj tak pokračovať?");
                 setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
                 if(result == JOptionPane.YES_OPTION){
                     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
