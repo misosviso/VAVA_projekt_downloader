@@ -1525,16 +1525,13 @@ public final class MainView extends javax.swing.JFrame{
         lblSpaceP2.setText(r.getString("MainView.lblSpaceP2.text"));
         fldURLP2.setText(r.getString("MainView.fldURLP2.text"));
         lblStatus_main.setText(r.getString("MainView.lblStatus_main.text"));
-        lblTime_main.setText(r.getString("MainView.lblTime_main.text"));
-        lblDate_main.setText(r.getString("MainView.lblDate_main.text"));
         lblMain_main.setText(r.getString("MainView.lblMain_main.text"));
-        lblNewDownload_main.setText(r.getString("MainView.lblNewDownload_main.text"));
-        lblManageDownloads_main.setText(r.getString("MainView.lblManageDownloads_main.text"));
-        lblUnzip_main.setText(r.getString("MainView.lblUnzip_main.text"));
-        lblHistory_main.setText(r.getString("MainView.lblHistory_main.text"));
-        lblDestination_P2.setText(r.getString("MainView.lblDestination_P2.text"));
+        lblNewDownload_main.setText(r.getString("MainView.lblNewDownload_main.text_1"));
+        lblManageDownloads_main.setText(r.getString("MainView.lblManageDownloads_main.text_1"));
+        lblUnzip_main.setText(r.getString("MainView.lblUnzip_main.text_1"));
+        lblHistory_main.setText(r.getString("MainView.lblHistory_main.text_1"));
         lblSource_P2.setText(r.getString("MainView.lblSource_P2.text"));
-        lblPercentage_P3.setText(r.getString("MainView.lblPercentage_P3.text"));
+        lblPercentage_P3.setText(r.getString("MainView.lblPercentage_P3.text_1"));
         
         updateTables();
     }
@@ -1583,16 +1580,13 @@ public final class MainView extends javax.swing.JFrame{
         lblSpaceP2.setText(r.getString("MainView.lblSpaceP2.text"));
         fldURLP2.setText(r.getString("MainView.fldURLP2.text"));
         lblStatus_main.setText(r.getString("MainView.lblStatus_main.text"));
-        lblTime_main.setText(r.getString("MainView.lblTime_main.text"));
-        lblDate_main.setText(r.getString("MainView.lblDate_main.text"));
         lblMain_main.setText(r.getString("MainView.lblMain_main.text"));
-        lblNewDownload_main.setText(r.getString("MainView.lblNewDownload_main.text"));
-        lblManageDownloads_main.setText(r.getString("MainView.lblManageDownloads_main.text"));
-        lblUnzip_main.setText(r.getString("MainView.lblUnzip_main.text"));
-        lblHistory_main.setText(r.getString("MainView.lblHistory_main.text"));
-        lblDestination_P2.setText(r.getString("MainView.lblDestination_P2.text"));
+        lblNewDownload_main.setText(r.getString("MainView.lblNewDownload_main.text_1"));
+        lblManageDownloads_main.setText(r.getString("MainView.lblManageDownloads_main.text_1"));
+        lblUnzip_main.setText(r.getString("MainView.lblUnzip_main.text_1"));
+        lblHistory_main.setText(r.getString("MainView.lblHistory_main.text_1"));
         lblSource_P2.setText(r.getString("MainView.lblSource_P2.text"));
-        lblPercentage_P3.setText(r.getString("MainView.lblPercentage_P3.text"));
+        lblPercentage_P3.setText(r.getString("MainView.lblPercentage_P3.text_1"));
         
         updateTables();
     }
