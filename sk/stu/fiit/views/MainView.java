@@ -1468,8 +1468,6 @@ public final class MainView extends javax.swing.JFrame{
         fldDurationP3.setText(downloadController.getDownloadingTime());
         fldRemainingP3.setText(downloadController.getEstimatedTime());
         lblPercentage_P3.setText(downloadController.getPercentage());
-        System.out.println("downloadController.getTotalSize = " + downloadController.getTotalSize());
-        System.out.println("downloadController.getDownloadedSize = " + downloadController.getDownloadedSize());
         progressBarP3.setMaximum((int) downloadController.getTotalSize());
         progressBarP3.setValue((int) downloadController.getDownloadedSize());
     }

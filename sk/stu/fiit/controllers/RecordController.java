@@ -29,7 +29,7 @@ public class RecordController implements CustomTableModel, Serializable{
     
     public DefaultTableModel getRecent(){
         try {
-            return new DefaultTableModel(getTableData(this.manager.getDownloadedModel().subList(0, 4)), 
+            return new DefaultTableModel(getTableData(this.manager.getDownloadedModel().subList(0, 6)), 
                 new Object[]{"ID", "Dátum", "URL adresa", "Destinácia", "Status", "Veľkosť", "Trvanie"});
         } catch (Exception e) {
             return new DefaultTableModel(getTableData(this.manager.getDownloadedModel()), 
