@@ -359,7 +359,7 @@ public final class MainView extends javax.swing.JFrame{
         lblNameP1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNameP1.setText(bundle.getString("MainView.lblNameP1.text")); // NOI18N
         lblNameP1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlMainPageP1.add(lblNameP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 90, 30));
+        pnlMainPageP1.add(lblNameP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 110, 30));
 
         fldNameP1.setEditable(false);
         fldNameP1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -387,7 +387,7 @@ public final class MainView extends javax.swing.JFrame{
         lblSubjectP1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblSubjectP1.setText(bundle.getString("MainView.lblSubjectP1.text")); // NOI18N
         lblSubjectP1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlMainPageP1.add(lblSubjectP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 90, 30));
+        pnlMainPageP1.add(lblSubjectP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 110, 30));
 
         fldCreatorsP1.setEditable(false);
         fldCreatorsP1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -494,13 +494,13 @@ public final class MainView extends javax.swing.JFrame{
 
         lblSource_P2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblSource_P2.setText(bundle.getString("MainView.lblSource_P2.text")); // NOI18N
-        pnlNewDownloadP2.add(lblSource_P2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 30));
+        pnlNewDownloadP2.add(lblSource_P2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 120, 30));
 
         lblSpaceP2.setFont(new java.awt.Font("Arial", 3, 16)); // NOI18N
         lblSpaceP2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblSpaceP2.setText(bundle.getString("MainView.lblSpaceP2.text")); // NOI18N
         lblSpaceP2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlNewDownloadP2.add(lblSpaceP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 140, 30));
+        pnlNewDownloadP2.add(lblSpaceP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 170, 30));
 
         fldSpaceP2.setEditable(false);
         fldSpaceP2.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
@@ -510,7 +510,7 @@ public final class MainView extends javax.swing.JFrame{
                 fldSpaceP2ActionPerformed(evt);
             }
         });
-        pnlNewDownloadP2.add(fldSpaceP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 230, 30));
+        pnlNewDownloadP2.add(fldSpaceP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 230, 30));
 
         lblSizeP2.setFont(new java.awt.Font("Arial", 3, 16)); // NOI18N
         lblSizeP2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -526,7 +526,7 @@ public final class MainView extends javax.swing.JFrame{
                 fldSizeP2ActionPerformed(evt);
             }
         });
-        pnlNewDownloadP2.add(fldSizeP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 230, 30));
+        pnlNewDownloadP2.add(fldSizeP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 230, 30));
 
         lblSeparator6.setBackground(new java.awt.Color(0, 0, 0));
         lblSeparator6.setOpaque(true);
@@ -559,7 +559,7 @@ public final class MainView extends javax.swing.JFrame{
         lblSourceP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblSourceP3.setText(bundle.getString("MainView.lblSourceP3.text")); // NOI18N
         lblSourceP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlManageDownloadsP3.add(lblSourceP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 60, 20));
+        pnlManageDownloadsP3.add(lblSourceP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 100, 30));
 
         fldSourceP3.setEditable(false);
         fldSourceP3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -659,7 +659,7 @@ public final class MainView extends javax.swing.JFrame{
         lblStartP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblStartP3.setText(bundle.getString("MainView.lblStartP3.text")); // NOI18N
         lblStartP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlManageDownloadsP3.add(lblStartP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, 180, 30));
+        pnlManageDownloadsP3.add(lblStartP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 190, 30));
 
         fldDurationP3.setEditable(false);
         fldDurationP3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -675,7 +675,7 @@ public final class MainView extends javax.swing.JFrame{
         lblDurationP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblDurationP3.setText(bundle.getString("MainView.lblDurationP3.text")); // NOI18N
         lblDurationP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlManageDownloadsP3.add(lblDurationP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 180, 30));
+        pnlManageDownloadsP3.add(lblDurationP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 190, 30));
 
         fldRemainingP3.setEditable(false);
         fldRemainingP3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -691,13 +691,13 @@ public final class MainView extends javax.swing.JFrame{
         lblRemainingP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblRemainingP3.setText(bundle.getString("MainView.lblRemainingP3.text")); // NOI18N
         lblRemainingP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlManageDownloadsP3.add(lblRemainingP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, 180, 30));
+        pnlManageDownloadsP3.add(lblRemainingP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, 190, 30));
 
         lblDestinationP3.setFont(new java.awt.Font("Arial", 3, 16)); // NOI18N
         lblDestinationP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblDestinationP3.setText(bundle.getString("MainView.lblDestinationP3.text")); // NOI18N
         lblDestinationP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlManageDownloadsP3.add(lblDestinationP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 90, 20));
+        pnlManageDownloadsP3.add(lblDestinationP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 100, 30));
 
         fldDestinationP3.setEditable(false);
         fldDestinationP3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -713,7 +713,7 @@ public final class MainView extends javax.swing.JFrame{
         lblSizeP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblSizeP3.setText(bundle.getString("MainView.lblSizeP3.text")); // NOI18N
         lblSizeP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlManageDownloadsP3.add(lblSizeP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 180, 30));
+        pnlManageDownloadsP3.add(lblSizeP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 190, 30));
 
         fldSizeP3.setEditable(false);
         fldSizeP3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -729,7 +729,7 @@ public final class MainView extends javax.swing.JFrame{
         lblStatusP3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblStatusP3.setText(bundle.getString("MainView.lblStatusP3.text")); // NOI18N
         lblStatusP3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlManageDownloadsP3.add(lblStatusP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 180, 30));
+        pnlManageDownloadsP3.add(lblStatusP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 190, 30));
 
         fldStatusP3.setEditable(false);
         fldStatusP3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -860,19 +860,19 @@ public final class MainView extends javax.swing.JFrame{
         lblSourceP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblSourceP6.setText(bundle.getString("MainView.lblSourceP6.text")); // NOI18N
         lblSourceP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlDetailP6.add(lblSourceP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 90, 30));
+        pnlDetailP6.add(lblSourceP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 110, 30));
 
         lblNameP6.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblNameP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNameP6.setText(bundle.getString("MainView.lblNameP6.text")); // NOI18N
         lblNameP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlDetailP6.add(lblNameP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 90, 30));
+        pnlDetailP6.add(lblNameP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 110, 30));
 
         lblSizeP6.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblSizeP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblSizeP6.setText(bundle.getString("MainView.lblSizeP6.text")); // NOI18N
         lblSizeP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlDetailP6.add(lblSizeP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 90, 30));
+        pnlDetailP6.add(lblSizeP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 110, 30));
 
         fldSizeP6.setEditable(false);
         fldSizeP6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -882,7 +882,7 @@ public final class MainView extends javax.swing.JFrame{
                 fldSizeP6ActionPerformed(evt);
             }
         });
-        pnlDetailP6.add(fldSizeP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 230, 30));
+        pnlDetailP6.add(fldSizeP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 230, 30));
 
         fldNameP6.setEditable(false);
         fldNameP6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -892,7 +892,7 @@ public final class MainView extends javax.swing.JFrame{
                 fldNameP6ActionPerformed(evt);
             }
         });
-        pnlDetailP6.add(fldNameP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 600, 30));
+        pnlDetailP6.add(fldNameP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 710, 30));
 
         fldSourceP6.setEditable(false);
         fldSourceP6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -902,19 +902,19 @@ public final class MainView extends javax.swing.JFrame{
                 fldSourceP6ActionPerformed(evt);
             }
         });
-        pnlDetailP6.add(fldSourceP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 600, 30));
+        pnlDetailP6.add(fldSourceP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 710, 30));
 
         lblDateP6.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblDateP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblDateP6.setText(bundle.getString("MainView.lblDateP6.text")); // NOI18N
         lblDateP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlDetailP6.add(lblDateP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 180, 30));
+        pnlDetailP6.add(lblDateP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 110, 30));
 
         lblDurationP6.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblDurationP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblDurationP6.setText(bundle.getString("MainView.lblDurationP6.text")); // NOI18N
         lblDurationP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlDetailP6.add(lblDurationP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 80, 30));
+        pnlDetailP6.add(lblDurationP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 110, 30));
 
         fldDurationP6.setEditable(false);
         fldDurationP6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -924,7 +924,7 @@ public final class MainView extends javax.swing.JFrame{
                 fldDurationP6ActionPerformed(evt);
             }
         });
-        pnlDetailP6.add(fldDurationP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 230, 30));
+        pnlDetailP6.add(fldDurationP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, 230, 30));
 
         fldDateP6.setEditable(false);
         fldDateP6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -934,7 +934,7 @@ public final class MainView extends javax.swing.JFrame{
                 fldDateP6ActionPerformed(evt);
             }
         });
-        pnlDetailP6.add(fldDateP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 230, 30));
+        pnlDetailP6.add(fldDateP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 230, 30));
 
         lblMainTitleP6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblMainTitleP6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -952,13 +952,13 @@ public final class MainView extends javax.swing.JFrame{
                 fldStatusP6ActionPerformed(evt);
             }
         });
-        pnlDetailP6.add(fldStatusP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, 230, 30));
+        pnlDetailP6.add(fldStatusP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 230, 30));
 
         lblStatusP6.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblStatusP6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblStatusP6.setText(bundle.getString("MainView.lblStatusP6.text")); // NOI18N
         lblStatusP6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlDetailP6.add(lblStatusP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, 70, 30));
+        pnlDetailP6.add(lblStatusP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, 110, 30));
 
         btnOpenP6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnOpenP6.setText(bundle.getString("MainView.btnOpenP6.text")); // NOI18N
@@ -968,7 +968,7 @@ public final class MainView extends javax.swing.JFrame{
                 btnOpenP6MouseClicked(evt);
             }
         });
-        pnlDetailP6.add(btnOpenP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 270, 30));
+        pnlDetailP6.add(btnOpenP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, 270, 30));
 
         lblBackgroundP6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/background.jpg"))); // NOI18N
         lblBackgroundP6.setInheritsPopupMenu(false);
