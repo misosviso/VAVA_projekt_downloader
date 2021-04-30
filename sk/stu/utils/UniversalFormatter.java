@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit;
 public class UniversalFormatter {
     
     public static String formatSize(long size){
-        System.out.println("size = " + size);
         DecimalFormat df = new DecimalFormat("0.00");
         
         float kBsize = (float)size / (float)1024;

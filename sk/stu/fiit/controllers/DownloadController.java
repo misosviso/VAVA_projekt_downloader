@@ -52,7 +52,6 @@ public class DownloadController implements CustomTableModel{
     }
     
     public String getFileSize(String urlAddress) throws MalformedURLException, IOException {
-        System.out.println("Idem vypocitat file size");
         return  UniversalFormatter.formatSize(new URL(urlAddress).openConnection().getContentLength());
     }
     

@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,7 +70,6 @@ public class Downloader extends Thread implements TableModelItem, Logging{
    
     @Override
     public void run() {
-        System.out.println("totalSize = " + totalSize);
         LOGGER.log(Level.INFO, "Zacatie stahovania ID: " + downloaderID + ", url: " + source + " destinacia: " + destination);
         try (BufferedInputStream inputStream = new BufferedInputStream(new URL(source).openStream());
         FileOutputStream fileOS = new FileOutputStream(destination);) {
@@ -167,6 +167,7 @@ public class Downloader extends Thread implements TableModelItem, Logging{
     public String getStringEstTime() {
         long timeElapsed = new Date().getTime() - startDate.getTime() - sleepingTime;
         long estimatedTime = (long) ((float)timeElapsed / (float)downloaded * (float)totalSize);
+        estimatedTime -= timeElapsed;
         return UniversalFormatter.formatTimeElapsed(estimatedTime);
     }
 
@@ -175,6 +176,8 @@ public class Downloader extends Thread implements TableModelItem, Logging{
     }
 
     public String getPercentage() {
-        return String.valueOf((float)downloaded / (float)totalSize * 100) + "%";
+        DecimalFormat df = new DecimalFormat("0.00");
+        float percentage = (float)downloaded / (float)totalSize * 100;
+        return df.format(percentage) + "%";
     }
 }

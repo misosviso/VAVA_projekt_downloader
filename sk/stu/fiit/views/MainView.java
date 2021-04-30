@@ -535,9 +535,6 @@ public final class MainView extends javax.swing.JFrame{
         btnDownloadP2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/downloadButton.png"))); // NOI18N
         btnDownloadP2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 204, 113), 2));
         btnDownloadP2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDownloadP2MouseClicked(evt);
-            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnDownloadP2MouseReleased(evt);
             }
@@ -1213,10 +1210,6 @@ public final class MainView extends javax.swing.JFrame{
         this.switchToSlovak();
     }//GEN-LAST:event_btnSlovakP1MouseClicked
 
-    private void btnDownloadP2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDownloadP2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDownloadP2MouseClicked
-
     private void btnDownloadP2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDownloadP2MouseReleased
         try {
             String urlString1 = fldURLP2.getText();
@@ -1229,7 +1222,7 @@ public final class MainView extends javax.swing.JFrame{
             
             this.downloadController.download(urlString1, pathString1);
             
-            switchPanel(lblManageDownloads_main, 3);
+            switchPanel(lblManageDownloads_main, 2);
             
         } catch (MalformedURLException | InvalidUrlException ex) {
             JOptionPane.showMessageDialog(rootPane, "Nesprávna URL adresa");
@@ -1476,9 +1469,9 @@ public final class MainView extends javax.swing.JFrame{
         fldRemainingP3.setText(downloadController.getEstimatedTime());
         lblPercentage_P3.setText(downloadController.getPercentage());
         System.out.println("downloadController.getTotalSize = " + downloadController.getTotalSize());
-        //progressBarP3.setMaximum((int) downloadController.getTotalSize());
         System.out.println("downloadController.getDownloadedSize = " + downloadController.getDownloadedSize());
-        progressBarP3.setMaximum((int) downloadController.getDownloadedSize());
+        progressBarP3.setMaximum((int) downloadController.getTotalSize());
+        progressBarP3.setValue((int) downloadController.getDownloadedSize());
     }
     
     public void switchToSlovak(){

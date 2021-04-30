@@ -24,7 +24,6 @@ public class DownloadRecord implements TableModelItem, Serializable{
     private long timeElapsed;
 
     public DownloadRecord(Downloader downloader) {
-        System.out.println("Vytvaram novy zaznam");
         this.ID = downloader.getDownloaderId();
         this.startingDate = (Date) downloader.getDate();
         this.url = downloader.getUrl();
