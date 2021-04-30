@@ -5,7 +5,7 @@
  */
 package sk.stu.fiit.models;
 
-import sk.stu.utils.UniversalFormatter;
+import sk.stu.fiit.utils.UniversalFormatter;
 import java.io.Serializable;
 import java.util.Date;
 

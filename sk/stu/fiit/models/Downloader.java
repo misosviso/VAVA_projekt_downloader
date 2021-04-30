@@ -5,7 +5,7 @@
  */
 package sk.stu.fiit.models;
 
-import sk.stu.utils.UniversalFormatter;
+import sk.stu.fiit.utils.UniversalFormatter;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;

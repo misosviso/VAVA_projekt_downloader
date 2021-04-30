@@ -22,7 +22,7 @@ import sk.stu.fiit.controllers.RecordController;
 import sk.stu.fiit.exceptions.InvalidUrlException;
 import sk.stu.fiit.exceptions.NoFileSelected;
 import sk.stu.fiit.exceptions.NotZipException;
-import sk.stu.utils.DestinationResolver;
+import sk.stu.fiit.utils.DestinationResolver;
 
 /**
  *

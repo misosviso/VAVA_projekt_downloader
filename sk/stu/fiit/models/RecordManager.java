@@ -14,7 +14,7 @@ import sk.stu.fiit.exceptions.NoFileSelected;
 import sk.stu.fiit.exceptions.NotZipException;
 import sk.stu.fiit.models.unzipping.Unzipper;
 import sk.stu.fiit.views.MainView;
-import sk.stu.utils.DestinationResolver;
+import sk.stu.fiit.utils.DestinationResolver;
 
 /**
  *

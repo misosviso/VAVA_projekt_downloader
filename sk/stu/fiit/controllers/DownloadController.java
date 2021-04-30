@@ -13,9 +13,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import sk.stu.fiit.exceptions.InvalidUrlException;
 import sk.stu.fiit.models.DownloadManager;
-import sk.stu.utils.URLValidator;
+import sk.stu.fiit.utils.URLValidator;
 import sk.stu.fiit.views.MainView;
-import sk.stu.utils.UniversalFormatter;
+import sk.stu.fiit.utils.UniversalFormatter;
 
 /**
  *
