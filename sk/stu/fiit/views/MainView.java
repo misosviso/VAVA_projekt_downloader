@@ -1415,6 +1415,12 @@ public final class MainView extends javax.swing.JFrame{
     private javax.swing.JTable tblDownloadsP5;
     // End of variables declaration//GEN-END:variables
     
+    
+    /**
+     * Used to switch between Panels in JFrame
+     * @param lblActual label to be highlighted
+     * @param switchTo int panel number
+     */
     public void switchPanel(JLabel lblActual, int switchTo){
         this.lblActualPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 1, 54), 3));
         lblActual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 245, 255), 3));
@@ -1422,6 +1428,9 @@ public final class MainView extends javax.swing.JFrame{
         tabbs.setSelectedIndex(switchTo);
     }
     
+    /**
+     * Switch table contents according to actual language selected
+     */
     public void updateTables(){
         if(!btnSlovakP1.isEnabled()){
             tblDownloadsP1.setModel(recordController.getRecent());
@@ -1442,6 +1451,9 @@ public final class MainView extends javax.swing.JFrame{
         }
     }
     
+    /**
+     * Used to refresh table in Panel 3
+     */
     public void displayDownloadTable(){
         if(!btnSlovakP1.isEnabled()){
             tblDownloadsP3.setModel(downloadController.getDownloading());
@@ -1450,6 +1462,9 @@ public final class MainView extends javax.swing.JFrame{
         }
     }
 
+    /**
+     * Displaying current state of application
+     */
     public void displayState() {
         if(!btnSlovakP1.isEnabled()){
             this.fldStatus.setText(this.downloadController.getProgramStatus());
@@ -1459,6 +1474,9 @@ public final class MainView extends javax.swing.JFrame{
         }
     }
     
+    /**
+     * Show detailed information about download
+     */
     public void showDownloadDetail(){
         fldSourceP3.setText(downloadController.getDownloadingSource());
         fldDestinationP3.setText(downloadController.getDownloadingDest());
@@ -1472,6 +1490,9 @@ public final class MainView extends javax.swing.JFrame{
         progressBarP3.setValue((int) downloadController.getDownloadedSize());
     }
     
+    /**
+     * Switch application to Slovak language
+     */
     public void switchToSlovak(){
         btnSlovakP1.setEnabled(false);
         btnEnglishP1.setEnabled(true);
@@ -1528,6 +1549,10 @@ public final class MainView extends javax.swing.JFrame{
         updateTables();
     }
     
+    
+    /**
+     * Stich application to English language
+     */
     public void switchToEnglish(){
         btnSlovakP1.setEnabled(true);
         btnEnglishP1.setEnabled(false);
@@ -1584,6 +1609,9 @@ public final class MainView extends javax.swing.JFrame{
         updateTables();
     }
     
+    /**
+     * Set fields and labels in Panel 3 to empty 
+     */
     public void eraseDetailFields(){
         fldSourceP3.setText("");
         fldDestinationP3.setText("");
@@ -1597,6 +1625,9 @@ public final class MainView extends javax.swing.JFrame{
         
     }
 
+    /**
+     * Handling for closing application
+     */
     private void initWindowlistener() {
         this.addWindowListener(new WindowAdapter() { 
             @Override
