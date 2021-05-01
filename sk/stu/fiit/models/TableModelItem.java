@@ -6,7 +6,7 @@
 package sk.stu.fiit.models;
 
 /**
- *
+ * Functional interface which is used for creating tables from data from classes Downloader and DownloadRecord
  * @author Admin
  */
 public interface TableModelItem {

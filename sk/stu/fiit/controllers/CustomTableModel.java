@@ -9,7 +9,7 @@ import java.util.List;
 import sk.stu.fiit.models.TableModelItem;
 
 /**
- *
+ * Interface for formatting list for table display
  * @author Admin
  */
 public interface CustomTableModel {

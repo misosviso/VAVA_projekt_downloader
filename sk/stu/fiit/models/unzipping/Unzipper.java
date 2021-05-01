@@ -16,7 +16,7 @@ import java.util.zip.ZipInputStream;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Class which is responsible for unzipping file
  * @author Admin
  */
 public class Unzipper {

@@ -57,7 +57,7 @@ public class UniversalFormatter {
     /**
      * format elapsed time
      * @param timeElapsed elapsed time in miliseconds
-     * @return elapsed time in format hh:mm:ss
+     * @return elapsed time in format HH:mm:ss
      */
     public static String formatTimeElapsed(long timeElapsed){
         long rawSec = TimeUnit.MILLISECONDS.toSeconds(timeElapsed) % 60;
@@ -74,8 +74,9 @@ public class UniversalFormatter {
      * @param startingDate
      * @return 
      */
-    public static String formatDate(Date startingDate){
+    public static String formatDateTime(Date startingDate){
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss - dd. MM. yyyy");  
         return formatter.format(startingDate);
     }
+    
 }

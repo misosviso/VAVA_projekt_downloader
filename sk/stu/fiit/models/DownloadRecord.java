@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
+ * Class that holds information about one particular finished download(completed/interrupted)
  * @author Admin
  */
 public class DownloadRecord implements TableModelItem, Serializable{
@@ -48,7 +48,7 @@ public class DownloadRecord implements TableModelItem, Serializable{
     }
     
     public String getStringDate(){
-        return UniversalFormatter.formatDate(startingDate);
+        return UniversalFormatter.formatDateTime(startingDate);
     }
     
     public String getStringSize(){

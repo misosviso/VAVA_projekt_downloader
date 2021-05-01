@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Class which is responsible for downloading file from URL address
+ * Class which is responsible for downloading file from URL address to specified destination
  * @author Admin
  */
 public class Downloader extends Thread implements TableModelItem, Logging{
@@ -172,7 +172,7 @@ public class Downloader extends Thread implements TableModelItem, Logging{
     }
 
     public String getStringDate() {
-        return UniversalFormatter.formatDate(startDate);
+        return UniversalFormatter.formatDateTime(startDate);
     }
 
     public String getPercentage() {

@@ -18,7 +18,7 @@ import sk.stu.fiit.views.MainView;
 import sk.stu.fiit.utils.UniversalFormatter;
 
 /**
- *
+ * Controller for downloading and showing currently downloading files
  * @author Admin
  */
 public class DownloadController implements CustomTableModel{

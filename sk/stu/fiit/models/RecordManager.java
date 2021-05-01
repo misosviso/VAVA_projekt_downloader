@@ -17,7 +17,7 @@ import sk.stu.fiit.views.MainView;
 import sk.stu.fiit.utils.DestinationResolver;
 
 /**
- *
+ * Class which holds information about all finished(completed/interrupted) downloads
  * @author Admin
  */
 public class RecordManager implements Serializable{

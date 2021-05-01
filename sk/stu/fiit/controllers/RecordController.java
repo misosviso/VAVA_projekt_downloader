@@ -15,7 +15,7 @@ import sk.stu.fiit.models.RecordManager;
 import sk.stu.fiit.views.MainView;
 
 /**
- *
+ * Controller for displaying already downloaded files and unzipping them
  * @author Admin
  */
 public class RecordController implements CustomTableModel, Serializable{

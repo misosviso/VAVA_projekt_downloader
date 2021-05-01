@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 /**
- *
+ * Interface for setting up fielHandler
  * @author Admin
  */
 public interface Logging {

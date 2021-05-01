@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import sk.stu.fiit.views.MainView;
 
 /**
- *
+ * Controller which periodically refresh information in the MainView
  * @author Admin
  */
 public class DateTimeController {
