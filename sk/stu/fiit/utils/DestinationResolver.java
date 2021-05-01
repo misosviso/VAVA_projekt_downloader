@@ -29,6 +29,9 @@ public class DestinationResolver {
         URL fileUri = new URL(urlSpec);    
         int startIndex = fileUri.toString().lastIndexOf('/');
         int lastIndex = fileUri.toString().lastIndexOf('.');
+        if(startIndex + 1 > lastIndex){
+            return dirPath + "\\" + "untitled";
+        }
         String filename = fileUri.toString().substring(startIndex + 1, lastIndex);
         String extension = fileUri.toString().substring(lastIndex);
         String completeFilename = filename + extension;
@@ -71,7 +74,7 @@ public class DestinationResolver {
      */
     public static String getDownloadPath(String urlSpec) throws MalformedURLException, NoFileSelected{
         
-        String defaultDirectoryPath = System.getProperty("user.home");
+        String defaultDirectoryPath = System.getProperty("user.home") + "\\";
         String defaultFilePath = getDefaultPath(defaultDirectoryPath, urlSpec);
         String userFilePath = getPathFromUser(new File(defaultFilePath));
         

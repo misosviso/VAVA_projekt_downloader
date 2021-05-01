@@ -41,7 +41,6 @@ public class Downloader extends Thread implements TableModelItem, Logging{
      * @param destination path to the destination file
      * @throws MalformedURLException if the user given URL is not valid
      */
-
     public Downloader(int id, String source, String destination, Logger LOGGER) throws MalformedURLException, IOException {
         this.sleepingTime = 0;
         this.downloaderID = id;
@@ -78,7 +77,7 @@ public class Downloader extends Thread implements TableModelItem, Logging{
             while ((byteContent = inputStream.read(data, 0, 1024)) != -1 && !isInterrupted()) {
                 downloaded += byteContent;
                 fileOS.write(data, 0, byteContent);
-                sleep(5000);
+                //sleep(5000);
                 while(!running){
                     Downloader.yield();
                     sleep(1000);
